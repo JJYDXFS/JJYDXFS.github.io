@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JJYDXFS">
+
+
+
+
+
+<title>初次尝试MySQL+php+ajax+D3.js记录 | JJYDXFS</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JJYDXFS&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JJYDXFS&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">初次尝试MySQL+php+ajax+D3.js记录</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JJYDXFS</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 3, 2020&nbsp;&nbsp;20:06:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="提要"><a href="#提要" class="headerlink" title="提要"></a>提要</h2><ul>
+<li>准备好MySQL数据</li>
+<li>用php从MySQL中读取数据</li>
+<li>（JQuery）使用ajax从php读入需要的数据（json格式）</li>
+<li>调用D3.js加载数据得到直方图</li>
+<li>把代码部署到Linux服务器</li>
+</ul>
+<h2 id="准备MySQL数据"><a href="#准备MySQL数据" class="headerlink" title="准备MySQL数据"></a>准备MySQL数据</h2><p>这次使用的是导入CSV数据，具体载入和处理的步骤在关于MySQL的笔记里有记录，此处略过</p>
+<h2 id="用Ajax调用php脚本从MySQL中读取数据"><a href="#用Ajax调用php脚本从MySQL中读取数据" class="headerlink" title="用Ajax调用php脚本从MySQL中读取数据"></a>用Ajax调用php脚本从MySQL中读取数据</h2><p>php可以直接执行MySQL语句真的是太棒了（<code>php是世界上最好的语言-。-</code>）</p>
+<h3 id="在连接MySQL进行查询的php文件中："><a href="#在连接MySQL进行查询的php文件中：" class="headerlink" title="在连接MySQL进行查询的php文件中："></a>在连接MySQL进行查询的php文件中：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$servername = <span class="string">"localhost"</span>;</span><br><span class="line">$username = <span class="string">"root"</span>;</span><br><span class="line">$password = <span class="string">"password"</span>;</span><br><span class="line">$dbname = <span class="string">"test"</span>;</span><br><span class="line"><span class="comment">// 创建连接</span></span><br><span class="line">$conn = <span class="keyword">new</span> mysqli($servername, $username, $password, $dbname);</span><br><span class="line"><span class="comment">// Check connection</span></span><br><span class="line"><span class="keyword">if</span> ($conn-&gt;connect_error) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">"连接失败: "</span> . $conn-&gt;connect_error);</span><br><span class="line">&#125; </span><br><span class="line">$sql = <span class="string">"MySQL查询语句"</span>;	<span class="comment">// 固定的查询语句，字符串格式</span></span><br><span class="line">$result = $conn-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">$css=$result-&gt;fetch_all();</span><br><span class="line"><span class="keyword">echo</span> json_encode($css);	<span class="comment">// 将查询结果以json格式返回Ajax处</span></span><br><span class="line">$conn-&gt;close();	<span class="comment">// 关闭连接</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="在调用php查询文件的网页端代码"><a href="#在调用php查询文件的网页端代码" class="headerlink" title="在调用php查询文件的网页端代码"></a>在调用php查询文件的网页端代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 需要引用JQuery</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">	type: <span class="string">'POST'</span>,</span><br><span class="line">    url: <span class="string">'/***.php'</span>,	<span class="comment">// 调用php</span></span><br><span class="line">    data:&#123;</span><br><span class="line">        range:days+<span class="number">1</span>	<span class="comment">// 传输给php的数据（json格式），在php中可用 $_POST 调用</span></span><br><span class="line">    &#125;,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// data是从php处获取的返回值，此处可进行一些其他操作</span></span><br><span class="line">        <span class="keyword">var</span> DataRaw=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">        <span class="keyword">var</span> result=<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>);</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;result.length;i++)&#123;</span><br><span class="line">            DataRaw.push([result[i][<span class="number">0</span>],result[i][<span class="number">1</span>]]);</span><br><span class="line">		&#125;</span><br><span class="line">		BarChart(DataRaw);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="固定MySQL查询"><a href="#固定MySQL查询" class="headerlink" title="固定MySQL查询"></a>固定MySQL查询</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 固定的查询语句，字符串格式</span></span><br><span class="line">$sql = <span class="string">"SELECT id, value FROM t2"</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="根据Ajax的修改的带变量的MySQL查询"><a href="#根据Ajax的修改的带变量的MySQL查询" class="headerlink" title="根据Ajax的修改的带变量的MySQL查询"></a>根据Ajax的修改的带变量的MySQL查询</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// $_POST 是Ajax的提交值，用在MySQL语句里需要用&#123;&#125;包裹</span></span><br><span class="line">$sql = <span class="string">"select * from us </span></span><br><span class="line"><span class="string">    order by date desc</span></span><br><span class="line"><span class="string">    limit 0,&#123;$_POST['range']&#125;"</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-D3-js-实现数据可视化"><a href="#使用-D3-js-实现数据可视化" class="headerlink" title="使用 D3.js 实现数据可视化"></a>使用 D3.js 实现数据可视化</h2><p>一来可视化内容尚未全部完善，二来关键步骤已记在D3.js的笔记中，此处不展开</p>
+<h2 id="把代码部署到Linux服务器"><a href="#把代码部署到Linux服务器" class="headerlink" title="把代码部署到Linux服务器"></a>把代码部署到Linux服务器</h2><p>前几天刚把服务器重置了，一个纯净Linux系统（CentOS 7），对于我这个新手真是太过棘手</p>
+<h3 id="问题一：无法解析php代码"><a href="#问题一：无法解析php代码" class="headerlink" title="问题一：无法解析php代码"></a>问题一：无法解析php代码</h3><p>发现服务器不能解析php代码。难怪之前老首页代码用php写的下拉菜单突然不能用了，果然换了个新镜像什么都要重新来</p>
+<p>在终端使用下面的命令安装一下拓展就好了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mod_php</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题二：php-无法访问-显示-：error-500"><a href="#问题二：php-无法访问-显示-：error-500" class="headerlink" title="问题二：php 无法访问 显示 ：error 500"></a>问题二：php 无法访问 显示 ：error 500</h3><p>在php配置文件php.ini中修改（其实改了好像也没什么区别）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display_errors &#x3D; On		&#x2F;&#x2F;显示错误</span><br></pre></td></tr></table></figure>
+
+<h3 id="为了了解详细错误，查看错误日志"><a href="#为了了解详细错误，查看错误日志" class="headerlink" title="为了了解详细错误，查看错误日志"></a>为了了解详细错误，查看错误日志</h3><p>找到站点的error_log，里面会有详细的错误记录，现在的目录是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;log&#x2F;httpd&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>发现是没有安装php-mysqli，安装一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-mysqli</span><br></pre></td></tr></table></figure>
+
+<h3 id="出现新错误！：PHP-Fatal-error-Call-to-undefined-method-mysqli-result-fetch-all"><a href="#出现新错误！：PHP-Fatal-error-Call-to-undefined-method-mysqli-result-fetch-all" class="headerlink" title="出现新错误！：PHP Fatal error:  Call to undefined method mysqli_result::fetch_all()"></a>出现新错误！：PHP Fatal error:  Call to undefined method mysqli_result::fetch_all()</h3><p>几经搜索，确认安装了php-mysqlnd，可能的原因是php版本不支持该函数（v5.4），于是决定更新php版本</p>
+<p><a href="https://www.zerostopbits.com/how-to-upgrade-php-5-4-to-php-7-3-on-centos-7-5-1804/" target="_blank" rel="noopener">HOW TO UPGRADE PHP 5.4 TO PHP 7.3 ON CENTOS 7.5 (1804)</a></p>
+<p>至此，终于可以正常访问到条形图了！</p>
+<p><img src="http://img.joycez.xyz//md/2020-04-03_195420.jpg" alt=""></p>
+<p><a href="https://www.joycez.xyz/Covid_19/" target="_blank" rel="noopener">放个链接</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JJYDXFS</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"># 数据可视化</a>
+                    
+                        <a href="/tags/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8/"># Linux服务器</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/02/28/%E3%80%8A%E8%A7%81%E8%AF%86%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《见识》读书笔记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JJYDXFS | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

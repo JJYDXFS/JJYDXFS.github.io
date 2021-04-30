@@ -150,7 +150,7 @@ template {
   font-display: swap;
 }
 html {
-  font-family: SimSun, Lantinghei SC, 'lanting', PingFang SC, Seguo UI, Arial;
+  font-family: microsoft yahei, SimSun, Lantinghei SC, 'lanting', PingFang SC, Seguo UI, Arial;
 }
 html::-webkit-scrollbar {
   width: 8px;
@@ -1282,14 +1282,14 @@ header label {
 .post-content code {
   padding: 2px 4px;
   background: #f7f7f7;
-  font-family: SimSun, Menlo, Monaco, Consolas, Courier New, monospace;
+  font-family: microsoft yahei, SimSun, Menlo, Monaco, Consolas, Courier New, monospace;
   font-size: 12px;
 }
 .post-content pre {
   padding: 10px;
   overflow: auto;
   background: #f7f7f7;
-  font-family: SimSun, Menlo, Monaco, Consolas, Courier New, monospace;
+  font-family: microsoft yahei, SimSun, Menlo, Monaco, Consolas, Courier New, monospace;
 }
 .post-content pre code {
   padding: 0;

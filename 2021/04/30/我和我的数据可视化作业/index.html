@@ -182,17 +182,58 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 30, 2021&nbsp;&nbsp;12:13:11</a>
+                        Date: <a href="#">April 30, 2021&nbsp;&nbsp;18:00:30</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AF%BE%E5%86%85%E4%BD%9C%E4%B8%9A/">课内作业</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这学期有一门数据可视化的必修。去年旁听过一阵但是没有坚持听完，这次可要抓住机会好好学。抽空为作业写了一个集锦：<a href="http://www.joycez.xyz/" target="_blank" rel="noopener">数据可视化作业集</a></p>
-<h2 id="似乎没什么可说的饼图和柱状图联动"><a href="#似乎没什么可说的饼图和柱状图联动" class="headerlink" title="似乎没什么可说的饼图和柱状图联动"></a>似乎没什么可说的饼图和柱状图联动</h2><h2 id="突发奇想的音乐可视化"><a href="#突发奇想的音乐可视化" class="headerlink" title="突发奇想的音乐可视化"></a>突发奇想的音乐可视化</h2><h2 id="为什么没人喜欢冰与火之歌？"><a href="#为什么没人喜欢冰与火之歌？" class="headerlink" title="为什么没人喜欢冰与火之歌？"></a>为什么没人喜欢冰与火之歌？</h2>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这学期有一门数据可视化的必修。去年旁听过一阵但是没有坚持听完，这次可要抓住机会好好学。抽空为作业写了一个集锦：<a target="_blank" rel="noopener" href="http://www.joycez.xyz/">数据可视化作业集</a></p>
+<h2 id="似乎没什么可说的饼图和柱状图联动"><a href="#似乎没什么可说的饼图和柱状图联动" class="headerlink" title="似乎没什么可说的饼图和柱状图联动"></a>似乎没什么可说的饼图和柱状图联动</h2><p><a target="_blank" rel="noopener" href="http://www.joycez.xyz/dviz2021/pie_chart.html"><strong>全球录制音乐产业收入 2001-2020 (US$ BILLIONS)</strong></a></p>
+<p>一鱼两吃，一种数据也可以用来做n次作业…… IFPI 的这个数据总计让我做了三遍</p>
+<p>从最早的堆叠柱状图，那个真是网上找了相关demo套来的，好多用法我至今也不太清楚，比如X轴和Y轴的刻度设置等……</p>
+<p>不过后两次的饼图、柱状图联动主体就基本是我自己敲出来的了。所以在增加点击事件的时候也会更加好操作一些。在写交互事件的时候我对 g 标签的使用有了更深入的认识，组 真是个好东西。最后一次做饼图到柱状图的数据连接，还是我做完音乐可视化之后得到的灵感</p>
+<p>这组数据最明显的特点大概就是实体唱片的没落和流媒体的崛起了吧</p>
+<h2 id="突发奇想的音乐可视化"><a href="#突发奇想的音乐可视化" class="headerlink" title="突发奇想的音乐可视化"></a>突发奇想的音乐可视化</h2><p><a target="_blank" rel="noopener" href="http://www.joycez.xyz/dviz2021/music_viz.html"><strong>Music Viz</strong></a></p>
+<p>说到起因，当然是因为最初定的主题是音乐相关。没事翻教材的时候看到后面有音乐可视化的章节，想着为什么不试做一下呢？</p>
+<p>要说IT行业的更新是真快，我用D3V6的版本每次都要大改教材上的代码。一会儿是语法变了，一会儿又是Chrome升级了新特性……就比如这个音乐可视化，就有Chrome上的变化<a target="_blank" rel="noopener" href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio">Autoplay Policy Changes  | Web  | Google Developers</a>。得得到用户手势才能开始后续步骤，也就是得手动 resume</p>
+<p>不过我主要想说的是页面里的柱状图<del>（cuz扇形图是从书上参考来的）</del>：</p>
+<ol>
+<li>首先从<strong>颜色</strong>上含义和饼图是一样的：从红色到紫色，对应<strong>低频音到高频音</strong>，就和可见光谱一样</li>
+<li>柱状图的<strong>高度</strong>代表了该频率音在歌曲播放到当前时刻的<strong>平均强度</strong></li>
+<li>某柱体的<strong>透明度</strong>代表了该频率音在歌曲中相对最常出现的音的<strong>使用频率</strong></li>
+</ol>
+<p>当歌曲播放完之后就能得到一个基于统计数据的直方图</p>
+<p>我在写之前，看了其他的一些音乐可视化，大都注重于表现音乐的瞬时性。诚然，音乐的多变能在每时每刻呈现出来是很好的，然而当音乐播放完之后，所有的声音、色彩都消失了。不免让人有落差</p>
+<p>所以，让音乐留下来吧，抓住一点影子也好。就像三维物体穿过二维平面，我想通过这些统计数据记录下音乐播放过的痕迹</p>
+<p>页面上放的几首歌都是个人歌单里比较喜欢的几首，算是夹带私货了XP</p>
+<h2 id="没人喜欢冰与火之歌嘛？"><a href="#没人喜欢冰与火之歌嘛？" class="headerlink" title="没人喜欢冰与火之歌嘛？"></a>没人喜欢冰与火之歌嘛？</h2><p><a target="_blank" rel="noopener" href="http://www.joycez.xyz/dviz2021/Force_Directed_Graph/"><strong>Social Network in GoT</strong></a></p>
+<p>作为一个孤独的冰火粉丝是什么体验。大约就是画完力导关系图想和别人分享却没有人能理解吧。可！是！这个图它真的很酷耶！</p>
+<blockquote>
+<p>不过，先小小吐槽一下<a target="_blank" rel="noopener" href="https://www.kaggle.com/mmmarchetti/game-of-thrones-dataset">源数据集</a>，不知道是按什么逻辑统计的关联</p>
+<p>没有 Martell 家族，确实，卷一里是没什么戏份。但是！连雷加这挂了十几年的人都有统计，把多恩惨打在公屏上！伊利亚公主直接查无此人了，虽然就算提到大概也是和 Mountain 关联在一起……那还是大可不必。就当少找几个图帮我节省时间了</p>
+<p>不过我看到 Sansa 和梅葛一世还有关联的时候，我整个人都充满了问号？？？亲爱的你是去穿越了吗</p>
+<p>诸如此类的奇怪交集我就不多赘述了，总得来说数据集质量还是可以的</p>
+</blockquote>
+<p>一点进页面显示的就是龙家的关系图（<strong>点击不同族徽可以切换家族关系图</strong>），大大的三头龙图标非常赏心悦目</p>
+<p>可能和很多人不同，我最喜欢的是坦格利安家族。因为我是龙妈nc粉，我摊牌了！我就是夹带私货！</p>
+<p>我还专门为每个家族找了 sigil 和背景图片，这回记得压缩图片了</p>
+<p>每个家族成员<strong>共享相同节点颜色</strong>，在家族关系图中，该家族成员节点会<strong>被放大突出</strong>；在单人关系图中（<strong>双击节点切换单人关系</strong>），中心人物被放大突出。<strong>线的粗细程度代表交集的多寡</strong></p>
+<p>以全书我最喜欢的角色·永远的神·安达尔人·洛伊拿人和先民的女王·七国女王/统治者·全境守护者·大草海的卡丽熙·镣铐/锁链破除者·弥林女王·龙石岛公主·不焚者·龙之母·弥莎·母亲·银发女王·银发女士·龙女王·丹妮莉丝·坦格利安——即<strong>龙妈</strong>为例：</p>
+<p><img src="http://img.joycez.xyz/md/2021-04-30_193126.png" alt="2021-04-30_193126"></p>
+<p>在龙妈的单人关系图中，三根最粗的线连接着卷一中对她影响最大的三个男人：马王Drogo、她二哥乞丐王Viserys以及大熊Jorah，无疑说明这个数据集还是有一定可靠性<del>（我在说什么废话）</del>。甚至连Mirri Maz Duur那个神婆都有，而且关系还不小。总之就是这个图对我这样看原著的书粉来说非常非常的有意思！</p>
+<p>好吧，也许对GOT不感兴趣的人，同样也不会对这个图感兴趣。所以！我的朋友圈为什么没有冰火书粉！为什么！</p>
+
         </div>
 
         
@@ -214,6 +255,8 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"># 数据可视化</a>
                     
                         <a href="/tags/%E5%89%8D%E7%AB%AF/"># 前端</a>
                     

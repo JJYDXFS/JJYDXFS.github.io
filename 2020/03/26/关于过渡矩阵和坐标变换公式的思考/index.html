@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JJYDXFS">
+
+
+
+
+
+<title>关于过渡矩阵和坐标变换公式的思考 | JJYDXFS</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JJYDXFS&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JJYDXFS&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">关于过渡矩阵和坐标变换公式的思考</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JJYDXFS</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 26, 2020&nbsp;&nbsp;16:21:50</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        学习线性代数的时候一直很难理解过渡矩阵和坐标变换公式的概念，看到题目里求某向量在A基和B基下的坐标，除了蒙个公式上去几乎是无法思考。到了新学期，这些概念兜兜转转又回来了，是时候了结它们了。其实我思考的过程就是教科书上论述的过程，只是自己表述一遍会理解得更深刻一些。</p>
+<h3 id="过渡矩阵与坐标变换公式（数字的问题要用数字的方式解决）"><a href="#过渡矩阵与坐标变换公式（数字的问题要用数字的方式解决）" class="headerlink" title="过渡矩阵与坐标变换公式（数字的问题要用数字的方式解决）"></a>过渡矩阵与坐标变换公式（数字的问题要用数字的方式解决）</h3><p>​        （一点废话）之前有尝试用矩阵变换的方式理解过渡矩阵和坐标变换，一度陷入误区，后来发现是缘木求鱼了。其实这类抽象数字之间的关系还是用式子来理解最直接，可能等认识再深入才能体会这背后的几何关系吧。</p>
+<hr>
+<h4 id="过渡矩阵"><a href="#过渡矩阵" class="headerlink" title="过渡矩阵"></a>过渡矩阵</h4><p>假设B基和A基是<strong>同一线性空间下</strong>两组<strong>不同的基向量</strong>（注意，是不同的两组向量），下示公式表示了A和B之间的关系</p>
+<script type="math/tex; mode=display">
+B=AP</script><p>其中，P被称为<strong>过渡矩阵</strong>。这个式子的含义实际上是<strong>用A基来表示B基</strong>，我们试图通过某种方式来找到A基和B基之间的联系，联系的推导过程如下：</p>
+<script type="math/tex; mode=display">
+B=EB=AA^{-1}B=AP\\P=A^{-1}B</script><p>通过单位阵变换我们可以很轻易的找到从A到B的表示方法，并把其中$A^{-1}B$ 的积矩阵定义为过渡矩阵$P$。其中没有什么复杂的变换，就是一个等式递推而已。</p>
+<h4 id="坐标变换公式"><a href="#坐标变换公式" class="headerlink" title="坐标变换公式"></a>坐标变换公式</h4><p>为什么过渡矩阵能和坐标变换公式扯上关系，这曾一度让我很费解。</p>
+<p>设$\vec v$是该线性空间（A基和B基所在的线性空间，假设为n维）中的一个向量，把A基记为$(\vec a_1,\vec a_2,\dots,\vec a_n)$，B基记为$(\vec b_1,\vec b_2,\dots,\vec b_n)$</p>
+<p>$\vec v$在A基下的坐标，也就是用A基（向量组）来线性表示$\vec v$时的系数们，用向量表示为$\vec x=<br>\left(<br> \begin{matrix}<br>   x_1\\<br>   x_2\\<br>   \vdots\\<br>   x_n<br>  \end{matrix}<br>\right)$</p>
+<p>$\vec v$在B基下的坐标，也就是用B基（向量组）来线性表示$\vec v$时的系数们，用向量表示为$\vec y=<br>\left(<br> \begin{matrix}<br>   y_1\\<br>   y_2\\<br>   \vdots\\<br>   y_n<br>  \end{matrix}<br>\right)$</p>
+<p>通过$\vec v$我们可以建立起$\vec x$和$\vec y$之间的关系,注意向量不同的横纵表示，这涉及乘法运算时的先后顺序</p>
+<script type="math/tex; mode=display">
+\because \vec v=A\vec x\\
+\quad \vec v=B\vec y \\
+\therefore A\vec x=B\vec y</script><script type="math/tex; mode=display">
+\because B=AP\,(用A表示B，过渡矩阵在这里派上了用场)\\
+\therefore A\vec x=AP\vec y\\
+\therefore \vec x=P\vec y\\
+\therefore \vec y=P^{-1}\vec x</script><p>这也就推导出了不同基下的坐标变换公式。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JJYDXFS</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"># 线性代数</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/04/03/%E5%88%9D%E6%AC%A1%E5%B0%9D%E8%AF%95MySQL-php-ajax-D3-js%E8%AE%B0%E5%BD%95/">初次尝试MySQL+php+ajax+D3.js记录</a>
+            
+            
+            <a class="next" rel="next" href="/2020/03/21/%E5%85%B3%E4%BA%8E%E7%BA%BF%E6%80%A7%E6%98%A0%E5%B0%84%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%80%9D%E8%80%83/">关于"线性映射的矩阵表示"的思考</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JJYDXFS | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

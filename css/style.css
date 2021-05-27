@@ -150,7 +150,7 @@ template {
   font-display: swap;
 }
 html {
-  font-family: Microsoft Yahei, SimSun, 'Microsoft Jhenghei', Lantinghei SC, PingFang SC, Seguo UI, Arial;
+  font-family: microsoft yahei, SimSun, 'Microsoft Jhenghei', Lantinghei SC, PingFang SC, Seguo UI, Arial;
 }
 html::-webkit-scrollbar {
   width: 8px;

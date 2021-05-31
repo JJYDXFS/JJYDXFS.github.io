@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JJYDXFS">
+
+
+
+
+
+<title>记一次一波n折的debug之旅 | JJYDXFS</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JJYDXFS&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JJYDXFS&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">记一次一波n折的debug之旅</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JJYDXFS</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 31, 2021&nbsp;&nbsp;17:01:15</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AF%BE%E5%86%85%E4%BD%9C%E4%B8%9A/">课内作业</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="不要在刚睡醒时做决定"><a href="#不要在刚睡醒时做决定" class="headerlink" title="不要在刚睡醒时做决定"></a>不要在刚睡醒时做决定</h2><p>周一的早晨，没有课…早上七点…早上八点…早上九点…醒了！</p>
+<p>看了看窗外，今天是个大阴天，上午似乎还没有完全过去。想着不如就利用这段时间写一下上周课后的人脸识别作业小 demo 好了</p>
+<p>要求是能把识别结果显示到前端。简单计划一下：前端用 Vue，后端 Flask，找几个图充当一下<em>伪人脸库</em>，能支持上传待识别图片+返回识别结果</p>
+<p>于是打开 VScode，开启了数小时的跳坑、出坑、跳坑、出坑，结果发现还在坑里的痛苦旅程。由于最后发现出 bug 的根本原因过于出人意料，所以从头回顾一下，就当留个纪念了</p>
+<p><img src="http://img.joycez.xyz/md/4fae24e34862df27fb73a4a851a8f130.jpeg" alt="4fae24e34862df27fb73a4a851a8f130" style="zoom:67%;" /></p>
+<h2 id="不算平稳的开局"><a href="#不算平稳的开局" class="headerlink" title="不算平稳的开局"></a>不算平稳的开局</h2><p>虽然以前并没有走过上传图片到服务器这样的流程，但是我想应该和其他的表单数据大差不差吧 <del>（naive</del></p>
+<ol>
+<li><p>先找五个图当数据库数据，p成相同的分别率，以往一直好用的 PSCC 2018 无故卡死。百度一下，删了个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/315327553">文件</a>，能用了。这似乎预示了今天不会太顺利。</p>
+</li>
+<li><p>再在 element plus 上挑选几个适合的<a target="_blank" rel="noopener" href="https://element-plus.org/#/zh-CN/component/upload">组件</a>，用来上传文件和容纳图片</p>
+</li>
+<li><p>之后用 Flask 写个 post 接口，准备接收图片</p>
+</li>
+<li><p>准备就绪、启动 Flask、上传图片！</p>
+</li>
+</ol>
+<p>嗯？没反应，F12 打开 console</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access to XMLHttpRequest at ‘xxx’ from origin ‘xxx’ has been blocked by CORS policy: Response to preflight request doesn’t pass access control check: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</span><br></pre></td></tr></table></figure>
+<p>这个报错我熟，不就是跨域问题吗。可是…我的 Flask 设置过跨域请求了啊，难道是我忽略了什么细节，跨域传图还得设置别的？</p>
+<h2 id="被“跨域”带跑"><a href="#被“跨域”带跑" class="headerlink" title="被“跨域”带跑"></a>被“跨域”带跑</h2><p>抱着“这应该是个跨域问题”的错误想法，我开始在坑里瞎蹦跶。不断在 Vue 和 Flask 的跨域设置之间反复横跳：一面修改 upload 组件的 headers 参数、action 参数；一面又不断查看 Flask 的服务器输出信息，顺带还了解了 OPTIONS 请求（一种在 POST 请求前发送的预检请求）</p>
+<p>当然，一切的尝试都是徒劳……还一度想拿 nginx 做反向代理，但是潜意识总觉得没必要。Flask 都不能上传图片了，那还叫什么事儿啊</p>
+<p>眉头紧皱快速解决外卖之后又开始来回看前后端的代码，看得都想砸键盘了。突然觉得 action 的 url 参数有个 双斜杠 看着有点碍眼，删一个。然后，报错消失了</p>
+<p><img src="http://img.joycez.xyz/md/2021-05-31_183445.png" alt="2021-05-31_183445" style="zoom: 33%;" /></p>
+<p>这也太没道理了，url 不是几个杠都没关系吗？哦，原来不是啊……没去细查原理，先找了一个有点相关的<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dcdcf17b237f?utm_campaign">解释</a></p>
+<h2 id="没想到原因竟是——！"><a href="#没想到原因竟是——！" class="headerlink" title="没想到原因竟是——！"></a>没想到原因竟是——！</h2><p>看着控制台一溜的200、200，我想这回应该能成。修改了接口的代码，加一下存图的步骤</p>
+<p>准备就绪、重启 Flask、上传图片！</p>
+<p>嗯？又给我报跨域错误？Chrome 当我傻吗，这绝绝对对和跨域没有关系！后台输出一下 request.files ，是空的。怎么还能是空的呢，我都在控制台看到 Form Data 里有图片二进制文件了呀，真是有够离谱的</p>
+<p><img src="http://img.joycez.xyz/md/2021-05-31_185414.png" alt="2021-05-31_185414" style="zoom:67%;" /></p>
+<p>之后开始寻找其他的拿数据方法。这里随便举个例子：《基于 get_data 方法的坑中挖坑自动机》，意外发现用 request.get_data() 能输出非空，但是是字节流形式的，就很emmm……不管了，先死马当活马医吧。去吧 pillow！去吧 BytesIO！把字节流给我转图片！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OSError: cannot identify image file &lt;_io.BytesIO object at 0x00000...&gt;</span><br></pre></td></tr></table></figure>
+<p>咳咳，好的吧，看来是不怎么太靠谱。开始眉头紧锁，开始想砸键盘。我只是想给 Flask 传个图，怎么这么多事儿啊？在网上搜索各类成型 demo，代码一样，步骤一样，怎么人家能跑我就只能输出 None 了呢</p>
+<p><img src="http://img.joycez.xyz/md/2021-05-31_191118.png" alt="2021-05-31_191118" style="zoom: 50%;" /></p>
+<p>把所有的多余代码注释掉，上传图片，发现控制台报了新的错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net::ERR_CONNECTION_ABORTED</span><br></pre></td></tr></table></figure>
+<p>但是服务器并没有报错，疑惑不解，遂百度之</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangfeiyue12178/article/details/112345234">上传文件报错: net::ERR_CONNECTION_ABORTED</a></p>
+<p>试探性换了个小点的文件，上传-保存 非常丝滑</p>
+<p>合着到头来居然是文件大小的问题，麻了呀</p>
+<p><img src="http://img.joycez.xyz/md/2021-05-31_191513.png" alt="2021-05-31_191513" style="zoom:50%;" /></p>
+<p>解决这个问题后，剩下都是小细节了，接个成型的检测算法，前端拿到返回结果自动渲染一下……对了，还有错误提示也加一下。试用一下，能用，很好</p>
+<p><img src="http://img.joycez.xyz/md/2021-05-31_191709.png" alt="2021-05-31_191709" style="zoom: 33%;" /></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>又是和 bug 抗争的平凡一天。bug 们总是出在意想不到的地方，而对于我这种非常菜的家伙，有一把比较沉的键盘是很重要的，这样在想砸键盘之前就会有所顾忌……</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JJYDXFS</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Flask/"># Flask</a>
+                    
+                        <a href="/tags/Vue/"># Vue</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/04/30/%E6%88%91%E5%92%8C%E6%88%91%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BD%9C%E4%B8%9A/">我和我的数据可视化作业</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JJYDXFS | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

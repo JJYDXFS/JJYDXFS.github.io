@@ -202,7 +202,7 @@
 <p>看了看窗外，今天是个大阴天，上午似乎还没有完全过去。想着不如就利用这段时间写一下上周课后的人脸识别作业小 demo 好了</p>
 <p>要求是能把识别结果显示到前端。简单计划一下：前端用 Vue，后端 Flask，找几个图充当一下<em>伪人脸库</em>，能支持上传待识别图片+返回识别结果</p>
 <p>于是打开 VScode，开启了数小时的跳坑、出坑、跳坑、出坑，结果发现还在坑里的痛苦旅程。由于最后发现出 bug 的根本原因过于出人意料，所以从头回顾一下，就当留个纪念了</p>
-<p><img src="http://img.joycez.xyz/md/4fae24e34862df27fb73a4a851a8f130.jpeg" alt="4fae24e34862df27fb73a4a851a8f130" style="zoom:67%;" /></p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/4fae24e34862df27fb73a4a851a8f130.jpeg" alt="4fae24e34862df27fb73a4a851a8f130" style="zoom:67%;" /></p>
 <h2 id="不算平稳的开局"><a href="#不算平稳的开局" class="headerlink" title="不算平稳的开局"></a>不算平稳的开局</h2><p>虽然以前并没有走过上传图片到服务器这样的流程，但是我想应该和其他的表单数据大差不差吧 <del>（naive</del></p>
 <ol>
 <li><p>先找五个图当数据库数据，p成相同的分别率，以往一直好用的 PSCC 2018 无故卡死。百度一下，删了个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/315327553">文件</a>，能用了。这似乎预示了今天不会太顺利。</p>
@@ -220,25 +220,25 @@
 <h2 id="被“跨域”带跑"><a href="#被“跨域”带跑" class="headerlink" title="被“跨域”带跑"></a>被“跨域”带跑</h2><p>抱着“这应该是个跨域问题”的错误想法，我开始在坑里瞎蹦跶。不断在 Vue 和 Flask 的跨域设置之间反复横跳：一面修改 upload 组件的 headers 参数、action 参数；一面又不断查看 Flask 的服务器输出信息，顺带还了解了 OPTIONS 请求（一种在 POST 请求前发送的预检请求）</p>
 <p>当然，一切的尝试都是徒劳……还一度想拿 nginx 做反向代理，但是潜意识总觉得没必要。Flask 都不能上传图片了，那还叫什么事儿啊</p>
 <p>眉头紧皱快速解决外卖之后又开始来回看前后端的代码，看得都想砸键盘了。突然觉得 action 的 url 参数有个 双斜杠 看着有点碍眼，删一个。然后，报错消失了</p>
-<p><img src="http://img.joycez.xyz/md/2021-05-31_183445.png" alt="2021-05-31_183445" style="zoom: 33%;" /></p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-05-31_183445.png" alt="2021-05-31_183445" style="zoom: 33%;" /></p>
 <p>这也太没道理了，url 不是几个杠都没关系吗？哦，原来不是啊……没去细查原理，先找了一个有点相关的<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dcdcf17b237f?utm_campaign">解释</a></p>
 <h2 id="没想到原因竟是——！"><a href="#没想到原因竟是——！" class="headerlink" title="没想到原因竟是——！"></a>没想到原因竟是——！</h2><p>看着控制台一溜的200、200，我想这回应该能成。修改了接口的代码，加一下存图的步骤</p>
 <p>准备就绪、重启 Flask、上传图片！</p>
 <p>嗯？又给我报跨域错误？Chrome 当我傻吗，这绝绝对对和跨域没有关系！后台输出一下 request.files ，是空的。怎么还能是空的呢，我都在控制台看到 Form Data 里有图片二进制文件了呀，真是有够离谱的</p>
-<p><img src="http://img.joycez.xyz/md/2021-05-31_185414.png" alt="2021-05-31_185414" style="zoom:67%;" /></p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-05-31_185414.png" alt="2021-05-31_185414" style="zoom:67%;" /></p>
 <p>之后开始寻找其他的拿数据方法。这里随便举个例子：《基于 get_data 方法的坑中挖坑自动机》，意外发现用 request.get_data() 能输出非空，但是是字节流形式的，就很emmm……不管了，先死马当活马医吧。去吧 pillow！去吧 BytesIO！把字节流给我转图片！</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OSError: cannot identify image file &lt;_io.BytesIO object at 0x00000...&gt;</span><br></pre></td></tr></table></figure>
 <p>咳咳，好的吧，看来是不怎么太靠谱。开始眉头紧锁，开始想砸键盘。我只是想给 Flask 传个图，怎么这么多事儿啊？在网上搜索各类成型 demo，代码一样，步骤一样，怎么人家能跑我就只能输出 None 了呢</p>
-<p><img src="http://img.joycez.xyz/md/2021-05-31_191118.png" alt="2021-05-31_191118" style="zoom: 50%;" /></p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-05-31_191118.png" alt="2021-05-31_191118" style="zoom: 50%;" /></p>
 <p>把所有的多余代码注释掉，上传图片，发现控制台报了新的错</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net::ERR_CONNECTION_ABORTED</span><br></pre></td></tr></table></figure>
 <p>但是服务器并没有报错，疑惑不解，遂百度之</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangfeiyue12178/article/details/112345234">上传文件报错: net::ERR_CONNECTION_ABORTED</a></p>
 <p>试探性换了个小点的文件，上传-保存 非常丝滑</p>
 <p>合着到头来居然是文件大小的问题，麻了呀</p>
-<p><img src="http://img.joycez.xyz/md/2021-05-31_191513.png" alt="2021-05-31_191513" style="zoom:50%;" /></p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-05-31_191513.png" alt="2021-05-31_191513" style="zoom:50%;" /></p>
 <p>解决这个问题后，剩下都是小细节了，接个成型的检测算法，前端拿到返回结果自动渲染一下……对了，还有错误提示也加一下。试用一下，能用，很好</p>
-<p><img src="http://img.joycez.xyz/md/2021-05-31_191709.png" alt="2021-05-31_191709" style="zoom: 33%;" /></p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-05-31_191709.png" alt="2021-05-31_191709" style="zoom: 33%;" /></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>又是和 bug 抗争的平凡一天。bug 们总是出在意想不到的地方，而对于我这种非常菜的家伙，有一把比较沉的键盘是很重要的，这样在想砸键盘之前就会有所顾忌……</p>
 
         </div>

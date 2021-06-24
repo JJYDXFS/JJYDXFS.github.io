@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JJYDXFS">
+
+
+
+
+
+<title>大明首辅观察录 | JJYDXFS</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JJYDXFS&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JJYDXFS&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">大明首辅观察录</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JJYDXFS</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 24, 2021&nbsp;&nbsp;20:30:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AF%BE%E5%86%85%E4%BD%9C%E4%B8%9A/">课内作业</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>终于把 <a target="_blank" rel="noopener" href="http://ming.joycez.xyz/">大明首辅观察录</a> 写完啦！一直计划着做完后得写篇文章好好回顾一下。对于这个数据可视化课程结课作业，我将主要的精力花在了 <strong>数据的处理</strong> 和 <strong>展现形式的选择</strong> 以及 <strong>图表的细节优化</strong> 上。其他部分有所欠缺确实也是力有不逮，无法面面俱到</p>
+<p>可以说，数据收集的过程大大满足了我的“考据癖”。也不知道这个毛病是什么时候养成的。还记得读上彊村民的《宋词三百首》那会儿，我就爱一个一个注释抠过去…… </p>
+<h2 id="灵感总在深夜出现"><a href="#灵感总在深夜出现" class="headerlink" title="灵感总在深夜出现"></a>灵感总在深夜出现</h2><p>灵感的来源在上一篇博文中已经简单提到了。其实那晚原本已经躺上床，准备读会儿《美的历程》陶冶一下情操（简称催眠）。恰巧舍友W回寝谈到兰陵笑笑生原作者云云，勾起了我读《明朝那些事儿》的回忆。加入聊天后发现和舍友F兴趣相投，于是乎多聊了几句，当然，谈话涉及到了某几位著名的首辅。之后我便看不进书了，一直在想换结课作业主题的事儿，阅读进度也就此停留在了“陶器几何纹饰……”😅</p>
+<h2 id="结构设计"><a href="#结构设计" class="headerlink" title="结构设计"></a>结构设计</h2><p>确定主题后就得设计表现形式。我想改变惯用的从上而下线性表达，看了一些作品后觉得 <em>story-teller</em> 式的滚动说明风格挺符合我的预期。于是找了一篇参考教程 <a target="_blank" rel="noopener" href="https://vallandingham.me/scroller.html">So You Want to Build A Scroller</a>，准备着手试试</p>
+<p>在阅读了源码之后，我大致预估了一下绘图代码，觉得似乎并不能原样照搬：该教程作者的绘图参考了 <a target="_blank" rel="noopener" href="https://d3js.org/">D3js</a> 作者 <a target="_blank" rel="noopener" href="https://bost.ocks.org/mike/">Mike Bostock</a> 提出的 <a target="_blank" rel="noopener" href="https://bost.ocks.org/mike/chart/">Towards Reusable Charts</a>，将所有的图表预先绘制在同一张 SVG 上。这意味着随着图片增多，为了代码的可维护性必须进行解耦；而且，绘制在同一张 SVG 上图片交互将会产生冲突……</p>
+<p>在综合考虑了各主要矛盾之后，我决定舍弃绘制在同 SVG 中可以带来的滚动动态表现，首先保证代码的可维护性和图表的交互功能。经过一晚上的调整，将原先基于 js 的滚动激活效果整个迁移到 Vue3 上（利用了 Vue 动态组件的特性）。这也是代码设计的主要逻辑：通过监听页面滚动事件切换对应的组件</p>
+<p>之后就是一个一个组件往下写了，可维护性至此也得到了保证</p>
+<h2 id="试画散点图"><a href="#试画散点图" class="headerlink" title="试画散点图"></a>试画散点图</h2><p>TBC…</p>
+<h2 id="考据起步-——-地图"><a href="#考据起步-——-地图" class="headerlink" title="考据起步 —— 地图"></a>考据起步 —— 地图</h2><h2 id="考据进阶-——-桑基图"><a href="#考据进阶-——-桑基图" class="headerlink" title="考据进阶 —— 桑基图"></a>考据进阶 —— 桑基图</h2><h2 id="怎么处理谥号呢？Circle-Packing！"><a href="#怎么处理谥号呢？Circle-Packing！" class="headerlink" title="怎么处理谥号呢？Circle Packing！"></a>怎么处理谥号呢？Circle Packing！</h2><h2 id="从平面到立体"><a href="#从平面到立体" class="headerlink" title="从平面到立体"></a>从平面到立体</h2><h2 id="雷达图"><a href="#雷达图" class="headerlink" title="雷达图"></a>雷达图</h2>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JJYDXFS</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"># 数据可视化</a>
+                    
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/"># 前端</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/05/31/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%B8%80%E6%B3%A2n%E6%8A%98%E7%9A%84debug%E4%B9%8B%E6%97%85/">记一次一波n折的debug之旅</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JJYDXFS | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

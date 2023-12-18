@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>文艺复兴：是谁还在使用RSS聚合信息？哦，是我啊</title>
+    <link href="/2023/12/18/%E6%96%87%E8%89%BA%E5%A4%8D%E5%85%B4%EF%BC%9A%E6%98%AF%E8%B0%81%E8%BF%98%E5%9C%A8%E4%BD%BF%E7%94%A8RSS%E8%81%9A%E5%90%88%E4%BF%A1%E6%81%AF%EF%BC%9F%E5%93%A6%EF%BC%8C%E6%98%AF%E6%88%91%E5%95%8A/"/>
+    <url>/2023/12/18/%E6%96%87%E8%89%BA%E5%A4%8D%E5%85%B4%EF%BC%9A%E6%98%AF%E8%B0%81%E8%BF%98%E5%9C%A8%E4%BD%BF%E7%94%A8RSS%E8%81%9A%E5%90%88%E4%BF%A1%E6%81%AF%EF%BC%9F%E5%93%A6%EF%BC%8C%E6%98%AF%E6%88%91%E5%95%8A/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章应该可以算是我的RSS使用实践，之前朋友间闲聊的时候，偶尔会谈到平时怎么在互联网上看资讯之类。毕竟现在各类信息平台层出不穷，信息源也是五花八门。每天醒来把各个APP轮番点开浏览一遍，大有皇帝上朝的感觉。大约在2020年前后，我就开始苦恼于这个问题：频繁切换于各个APP简直太麻烦了，怎样才能在一个地方将自己感兴趣的资讯汇总在一起呢？而且我大部分时间又是坐在电脑前面，要是能用PC端浏览它们就更好了！</p><p>内容是内容平台的护城河，出于 Web2.0 的天性，它们也天然需要将用户留在自己的平台上，因此建立起较高的内容获取壁垒[1]。越来越多的应用需要登录才能浏览内容，以豆瓣为例，我记得早些年豆瓣小组内容还可以不登录浏览，但现在就不行了。更不要说微信公众号这样的封闭内容，此间爬虫的痛苦我自己也深有体会：<a href="https://jjydxfs.github.io/2021/04/30/%E6%88%91%E7%9A%84%E5%A4%A7%E5%88%9B%E5%9B%9E%E9%A1%BE/#%E7%88%AC%E8%99%AB%E7%9C%9F%E9%9A%BE">我的大创回顾-爬虫真难</a>！再再再吐槽一句，公众号种类增多又不能分类，餐厅推送和内容公众号混在一起我真的看不下去一点</p><p>话说回RSS：<a href="https://en.wikipedia.org/wiki/RSS">RSS</a>（Really Simple Syndication，简易信息聚合）是一种使用广泛的XML应用，允许用户和应用以标准化的计算机可读格式访问网站更新[2]。它似乎在互联网早期比较流行，近来提的人感觉不太多了。很久之前，我和一个大我几岁的老师聊到RSS，TA说感觉那东西听起来都算有点老土了哈哈哈。这也是为什么这篇文章被称为“文艺复兴”。但是RSS确实提供了一个通用方式去订阅信息更新，我实际使用下来它也极大程度上便利了我聚合新资讯的过程，接下来就来看看我具体的使用过程吧</p><h2 id="选择一个RSS阅读器"><a href="#选择一个RSS阅读器" class="headerlink" title="选择一个RSS阅读器"></a>选择一个RSS阅读器</h2><p>在使用RSS聚合信息的时候，每个信息源对应一个RSS订阅地址。而RSS阅读器就是把这些订阅地址汇总在一起，让用户得以在一个地方阅读和管理资讯的软件。虽然现在RSS已不如当初那么“火”，市面上还是有不少RSS阅读器的。此处以我最常用的 <a href="https://feedly.com/">Feedly</a> 为例（Feedly 在之前的博文中也有提过，选择它可能是因为我喜欢绿色吧），下图是我 Feedly 主页截图，且拿中文AI三大顶刊的“机器之心”镇镇场子</p><p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2023-12-18_130625_feedly.png" alt="Feedly"></p><p>页面左侧的 <code>FEEDS</code> 中，每行对应一个 RSS 订阅链接。点击一条订阅，比如机器之心专栏，右侧就会刷新成相应信息源的最新更新。截图中涉及了我常看的部分公众号订阅、知乎专栏订阅、CSDN订阅、AMiner、arxiv啥的，是不是还挺全的😋</p><p>选择RSS阅读器可能是在使用RSS进行信息聚合时最简单的一步了。就像我在前文中提到的，内容平台对内容的保护使得获取内容变得困难，因此找到一个能用的RSS订阅地址才是重头戏。接下来会简述怎么获取 or 生成常见信息源的RSS订阅地址</p><h2 id="最基础的RSS链接"><a href="#最基础的RSS链接" class="headerlink" title="最基础的RSS链接"></a>最基础的RSS链接</h2><p>很多博客和开放型的论坛都会提供 RSS 订阅地址，这种是最容易获取RSS订阅地址的内容，RSS往往以一个图标或者链接出现在页面的角落里。例如我常看的<a href="https://www.ruanyifeng.com/blog/">阮老师的博客</a>，博客主页右上角的小图标就是RSS订阅链接，点击复制再丢进RSS阅读器就可以用了。P.S. 通常RSS图标都是这种类似小 WiFi 的形式</p><p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2023-12-18_132652_rss.png" alt="阮一峰的网络日志"></p><p>Feedly 内部也提供常见RSS订阅地址的搜索功能，比如 Reddit 和纽约时报这种新闻平台。所以对于热门RSS地址，不用再自己去页面上找链接，用RSS阅读器搜索一下会更快~</p><h2 id="嘿！这里好像有些不太友善的家伙"><a href="#嘿！这里好像有些不太友善的家伙" class="headerlink" title="嘿！这里好像有些不太友善的家伙"></a>嘿！这里好像有些不太友善的家伙</h2><p>可惜的是，并不是所有内容都会主动提供 RSS（毕竟这和平台的根本利益冲突，不能把流量都送给RSS阅读器呀）。一些比较典型的代表就是邮箱订阅型内容和社交媒体平台内容，以下举例说明。由于我看得内容大都偏学术和技术一些，所以信息源的覆盖可能会有一点 bias</p><h3 id="Newsletter"><a href="#Newsletter" class="headerlink" title="Newsletter"></a>Newsletter</h3><p>邮箱订阅型在国外的内容网站貌似还挺常见。将 Newsletter 这种类型改成 RSS 的好处除了可以在一个地方阅读资讯之外，还可以减少邮箱的负担。把工作消息和资讯混在一起，不会比餐厅推送更好……</p><p>这里推荐一个小工具 <a href="https://kill-the-newsletter.com/">Kill the Newsletter!</a>：输入自定义名字就可以通过这个工具创建一个 <code>邮箱地址</code> 和对应的 <code>RSS订阅链接</code>。把邮箱地址提交给网站订阅，然后在RSS阅读器里订阅这个 RSS 链接就完成了 Newsletter 到 RSS 的转变。Google Scholar / AMiner / IEEE 相关会议的更新都可以通过这个方式进行订阅，很方便</p><h3 id="知乎专栏"><a href="#知乎专栏" class="headerlink" title="知乎专栏"></a>知乎专栏</h3><p>中文平台里知乎算是挺开放的一类了，我参考了这个<a href="https://rss.lilydjwg.me/">工具</a>获取知乎相关的信息订阅</p><h3 id="微信公众号"><a href="#微信公众号" class="headerlink" title="微信公众号"></a>微信公众号</h3><p>不论是从我个人经历还是道听途说的评价，公众号都是比较难抓取的。所以为了能获得稳定的服务……我花钱了：<a href="http://www.jintiankansha.me/">今天看啥</a>。不得不说，花了钱确实稳定</p><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>这里再列举一些我在建立自己的RSS信息源时参考过的其他教程和工具：</p><ul><li>Arxiv：<a href="https://zhuanlan.zhihu.com/p/367978120">追踪arxiv最新文章，设置阅读器提醒</a></li><li>Twitter：之前也试过RSS化Twitter，但是好像有时间限制。当时用得这个<a href="https://rss.app/rss-feed/create-twitter-rss-feed">工具</a></li><li><a href="https://github.com/DIYgod/RSSHub">RSSHub</a>：一个更强大的RSS生成器。这个我还没用过，因为上述的那些信息已经够我看得了🥱</li></ul><h3 id="RSS个性化"><a href="#RSS个性化" class="headerlink" title="RSS个性化"></a>RSS个性化</h3><p>用RSS服务也有三四年的时间了，在文章结束之前想简单谈一下我的使用体验。把所有信息都聚合在一个地方确实方便，我不用再点开每个关注的专栏、公众号、学者去跟进发生了什么新鲜事。但是把所有的信息都聚在一起，我的感觉还是看不完，根本看不完。与过去的世代相比，现在每天都有太多事情发生了，而我原始的大脑构造可能还没准备好应对这一切[3]。以 Feedly 为代表的 RSS 阅读器也开始提供 AI 总结和推荐功能、在 RSS 聚合到的信息上进一步过滤，但也难说会让现状变得更好。不过我现在觉得，不必太热衷于追求每一个新消息，看到就看到，看不到就算了；即便看到也终会忘记，一切随缘🙏</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] 吴军. 浪潮之巅. Ren min you dian chu ban she, 2013.<br>[2] <a href="https://en.wikipedia.org/wiki/RSS">https://en.wikipedia.org/wiki/RSS</a><br>[3] Hansen, Anders. Skärmhjärnan: hur en hjärna i osynk med sin tid kan göra oss stressade, deprimerade och ångestfyllda. Bonnier fakta, 2019.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>人生就是折腾</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>其他</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>云服务器恩怨情仇（二）</title>
     <link href="/2023/07/14/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%81%A9%E6%80%A8%E6%83%85%E4%BB%87%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <url>/2023/07/14/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%81%A9%E6%80%A8%E6%83%85%E4%BB%87%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
@@ -71,6 +96,8 @@
     <tags>
       
       <tag>其他</tag>
+      
+      <tag>前端</tag>
       
     </tags>
     

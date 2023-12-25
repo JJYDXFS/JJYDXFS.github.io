@@ -24,7 +24,7 @@
 <meta property="og:description" content="其实本文的主要内容应该是：用Slidev写我的答辩“PPT”，但用“你”来代替“我”好像就会让标题感觉高大上一些，so......在前阵子的毕业答辩中，我用 Slidev 而非 PowerPoint 制作了本科毕设pre的幻灯片。一直以来都想写些什么吹捧一下这款工具，这是我迄今为止见过最棒的用 Markdown 制作幻灯片的解决方案，在简洁高效和可定制化之间达到了良好平衡。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-06T04:25:25.000Z">
-<meta property="article:modified_time" content="2023-12-18T08:12:24.147Z">
+<meta property="article:modified_time" content="2023-12-25T04:39:36.498Z">
 <meta property="article:author" content="JJYDXFS">
 <meta property="article:tag" content="其他">
 <meta property="article:tag" content="前端">
@@ -296,7 +296,7 @@
 <p>在一切开始之前，先给出成品：<a href="https://jjydxfs.github.io/slidev_demo/1" target="_blank">本人的本科毕设答辩PPT</a>。这个成品与当时答辩时的版本略有一些出入，主要是当时做的校徽背景图不知道放哪里去了（一年多了，中间还换了次电脑，真的很难再找到！而且，我虽然用 git 对代码进行了版本控制，但是我 ignore 了 public/ 文件夹！！！当时苦心研究 <code>.gitignore</code> 的报应终于在快两年后命中了我的眉心😃）</p>
 <p>Slidev 基于 mkdown 格式的文稿生成网页版的幻灯片，鼠标移到画面的左下角还会显示一些标注工具，左右方向键可以控制幻灯片的播放，这些都是 Slidev 最基础的使用。话不多说，接下来我们开始进入正题。首先，从 mkdown 和 PowerPoint 的对比开始。</p>
 <h3 id="Markdown和PowerPoint"><a href="#Markdown和PowerPoint" class="headerlink" title="Markdown和PowerPoint"></a>Markdown和PowerPoint</h3><p>mkdown 对 PowerPoint 的区别就一如 mkdown 对 Word，好吧，看上去像句废话；那一如 Latex 对 Word？emmm，大差不差。从原理上而言，应当算是 <strong>排版与内容分离</strong> v.s. <strong>不分离</strong>。不难想到，咱们伟大的 Latex 当然也可以用来做幻灯片，好像很多搞数学的人就喜欢用 Latex 做幻灯片，毕竟公式友好。作为更有互联网味的排版语言，mkdown 当然有其特性，其中我最欣赏的一点就是它与网页的高度兼容，可以将许多新鲜的前端交互方式插入 PPT 难道不是很酷的事情么？而且这样一来，任何人都可以轻松地与内容进行交互，不必只能通过显式的文件分发。冗余的文件分发真是太无趣了，如果可以选，我更喜欢分享一个网址而不是文件。</p>
-<p>印象里第一次在现实中看到有人使用网页版的幻灯片，似乎是在大三下的媒体大数据课上，来教我们 <code>Vue.js</code> 的师兄用了网页驱动的幻灯片讲课。并且课后分享课件的时候，直接给我们 share 了网页地址。那一天在我的心里种下种子：太酷了，我也要做网页版的幻灯片！</p>
+<p>印象里第一次在现实中看到有人使用网页版的幻灯片，似乎是在大三下的媒体大数据课上，来教我们 <code>Vue.js</code> 的师兄用了网页驱动的幻灯片讲课。并且课后分享课件的时候，直接给我们分享了网页地址。那一天在我的心里种下种子：太酷了，我也要做网页版的幻灯片！</p>
 <h3 id="用Markdown写PPT的N种方法"><a href="#用Markdown写PPT的N种方法" class="headerlink" title="用Markdown写PPT的N种方法"></a>用Markdown写PPT的N种方法</h3><p>排版与内容分离的优势此处我不再多做赘述。当排版与内容分离之后，自然可以使用各式页面渲染技术来对内容进行装点。从我开始有意识了解利用 mkdown 写幻灯片后，也发现了不少有意思的工具。因为这篇文章主要聚焦 Slidev，所以其他工具会提得少一些。而且从我计划写这篇文章到真正动笔，中间还有一年多的时间差，也许世界又变了也说不定……</p>
 <h4 id="Jupyter-Notebook"><a href="#Jupyter-Notebook" class="headerlink" title="Jupyter Notebook"></a>Jupyter Notebook</h4><p>首先是老朋友 Jupyter，直接在 Jupyter 里用 mkdown 语法编写内容，之后在控制台生成 .html 就可以生成相应的幻灯片了。这可能是从写代码到汇报最快的方式hhh</p>
 <ul>

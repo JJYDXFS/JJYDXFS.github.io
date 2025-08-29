@@ -1,0 +1,718 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JJYDXFS">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第一次尝试写动态网站之处处踩坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初次尝试MySQL+php+ajax+D3.js记录">
+<meta property="og:url" content="https://jjydxfs.github.io/2020/04/03/%E5%88%9D%E6%AC%A1%E5%B0%9D%E8%AF%95MySQL-php-ajax-D3-js%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="JJYDXFS">
+<meta property="og:description" content="第一次尝试写动态网站之处处踩坑">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2020-04-03_195420.jpg">
+<meta property="article:published_time" content="2020-04-03T12:06:42.000Z">
+<meta property="article:modified_time" content="2024-07-01T12:52:15.992Z">
+<meta property="article:author" content="JJYDXFS">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="Linux服务器">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2020-04-03_195420.jpg">
+  
+  
+  
+  <title>初次尝试MySQL+php+ajax+D3.js记录 - JJYDXFS</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jjydxfs.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":"G-5BGESDX9FC","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-5BGESDX9FC', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5BGESDX9FC');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JJYDXFS&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://jjydxfs.github.io/academic/">
+                <i class="iconfont icon-link-fill"></i>
+                学术
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="初次尝试MySQL+php+ajax+D3.js记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-04-03 20:06" pubdate>
+          2020年4月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">初次尝试MySQL+php+ajax+D3.js记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="提要"><a href="#提要" class="headerlink" title="提要"></a>提要</h2><ul>
+<li>准备好MySQL数据</li>
+<li>用php从MySQL中读取数据</li>
+<li>（JQuery）使用ajax从php读入需要的数据（json格式）</li>
+<li>调用D3.js加载数据得到直方图</li>
+<li>把代码部署到Linux服务器</li>
+</ul>
+<h2 id="准备MySQL数据"><a href="#准备MySQL数据" class="headerlink" title="准备MySQL数据"></a>准备MySQL数据</h2><p>这次使用的是导入CSV数据，具体载入和处理的步骤在关于MySQL的笔记里有记录，此处略过</p>
+<h2 id="用Ajax调用php脚本从MySQL中读取数据"><a href="#用Ajax调用php脚本从MySQL中读取数据" class="headerlink" title="用Ajax调用php脚本从MySQL中读取数据"></a>用Ajax调用php脚本从MySQL中读取数据</h2><p>php可以直接执行MySQL语句真的是太棒了（<code>php是世界上最好的语言-。-</code>）</p>
+<h3 id="在连接MySQL进行查询的php文件中："><a href="#在连接MySQL进行查询的php文件中：" class="headerlink" title="在连接MySQL进行查询的php文件中："></a>在连接MySQL进行查询的php文件中：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$servername</span> = <span class="hljs-string">&quot;localhost&quot;</span>;<br><span class="hljs-variable">$username</span> = <span class="hljs-string">&quot;root&quot;</span>;<br><span class="hljs-variable">$password</span> = <span class="hljs-string">&quot;password&quot;</span>;<br><span class="hljs-variable">$dbname</span> = <span class="hljs-string">&quot;test&quot;</span>;<br><span class="hljs-comment">// 创建连接</span><br><span class="hljs-variable">$conn</span> = <span class="hljs-keyword">new</span> mysqli(<span class="hljs-variable">$servername</span>, <span class="hljs-variable">$username</span>, <span class="hljs-variable">$password</span>, <span class="hljs-variable">$dbname</span>);<br><span class="hljs-comment">// Check connection</span><br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$conn</span>-&gt;connect_error) &#123;<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;连接失败: &quot;</span> . <span class="hljs-variable">$conn</span>-&gt;connect_error);<br>&#125; <br><span class="hljs-variable">$sql</span> = <span class="hljs-string">&quot;MySQL查询语句&quot;</span>;	<span class="hljs-comment">// 固定的查询语句，字符串格式</span><br><span class="hljs-variable">$result</span> = <span class="hljs-variable">$conn</span>-&gt;query(<span class="hljs-variable">$sql</span>);<br><br><span class="hljs-variable">$css</span>=<span class="hljs-variable">$result</span>-&gt;fetch_all();<br><span class="hljs-keyword">echo</span> json_encode(<span class="hljs-variable">$css</span>);	<span class="hljs-comment">// 将查询结果以json格式返回Ajax处</span><br><span class="hljs-variable">$conn</span>-&gt;close();	<span class="hljs-comment">// 关闭连接</span><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="在调用php查询文件的网页端代码"><a href="#在调用php查询文件的网页端代码" class="headerlink" title="在调用php查询文件的网页端代码"></a>在调用php查询文件的网页端代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 需要引用JQuery</span><br>$.ajax(&#123;<br>	type: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>    url: <span class="hljs-string">&#x27;/***.php&#x27;</span>,	<span class="hljs-comment">// 调用php</span><br>    data:&#123;<br>        range:days+<span class="hljs-number">1</span>	<span class="hljs-comment">// 传输给php的数据（json格式），在php中可用 $_POST 调用</span><br>    &#125;,<br>    success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>        <span class="hljs-comment">// data是从php处获取的返回值，此处可进行一些其他操作</span><br>        <span class="hljs-keyword">var</span> DataRaw=<span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();<br>        <span class="hljs-keyword">var</span> result=<span class="hljs-built_in">eval</span>(<span class="hljs-string">&quot;(&quot;</span>+data+<span class="hljs-string">&quot;)&quot;</span>);<br>	    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;result.length;i++)&#123;<br>            DataRaw.push([result[i][<span class="hljs-number">0</span>],result[i][<span class="hljs-number">1</span>]]);<br>		&#125;<br>		BarChart(DataRaw);<br>        &#125;<br>    &#125;);<br></code></pre></td></tr></table></figure>
+<h3 id="固定MySQL查询"><a href="#固定MySQL查询" class="headerlink" title="固定MySQL查询"></a>固定MySQL查询</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 固定的查询语句，字符串格式</span><br><span class="hljs-variable">$sql</span> = <span class="hljs-string">&quot;SELECT id, value FROM t2&quot;</span>;	<br></code></pre></td></tr></table></figure>
+<h3 id="根据Ajax的修改的带变量的MySQL查询"><a href="#根据Ajax的修改的带变量的MySQL查询" class="headerlink" title="根据Ajax的修改的带变量的MySQL查询"></a>根据Ajax的修改的带变量的MySQL查询</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// $_POST 是Ajax的提交值，用在MySQL语句里需要用&#123;&#125;包裹</span><br><span class="hljs-variable">$sql</span> = <span class="hljs-string">&quot;select * from us </span><br><span class="hljs-string">    order by date desc</span><br><span class="hljs-string">    limit 0,<span class="hljs-subst">&#123;$_POST[&#x27;range&#x27;]&#125;</span>&quot;</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="使用-D3-js-实现数据可视化"><a href="#使用-D3-js-实现数据可视化" class="headerlink" title="使用 D3.js 实现数据可视化"></a>使用 D3.js 实现数据可视化</h2><p>一来可视化内容尚未全部完善，二来关键步骤已记在D3.js的笔记中，此处不展开</p>
+<h2 id="把代码部署到Linux服务器"><a href="#把代码部署到Linux服务器" class="headerlink" title="把代码部署到Linux服务器"></a>把代码部署到Linux服务器</h2><p>前几天刚把服务器重置了，一个纯净Linux系统（CentOS 7），对于我这个新手真是太过棘手</p>
+<h3 id="问题一：无法解析php代码"><a href="#问题一：无法解析php代码" class="headerlink" title="问题一：无法解析php代码"></a>问题一：无法解析php代码</h3><p>发现服务器不能解析php代码。难怪之前老首页代码用php写的下拉菜单突然不能用了，果然换了个新镜像什么都要重新来</p>
+<p>在终端使用下面的命令安装一下拓展就好了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum install mod_php<br></code></pre></td></tr></table></figure>
+<h3 id="问题二：php-无法访问-显示-：error-500"><a href="#问题二：php-无法访问-显示-：error-500" class="headerlink" title="问题二：php 无法访问 显示 ：error 500"></a>问题二：php 无法访问 显示 ：error 500</h3><p>在php配置文件php.ini中修改（其实改了好像也没什么区别）</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">display_errors</span> = <span class="hljs-literal">On</span>		//显示错误<br></code></pre></td></tr></table></figure>
+<h3 id="为了了解详细错误，查看错误日志"><a href="#为了了解详细错误，查看错误日志" class="headerlink" title="为了了解详细错误，查看错误日志"></a>为了了解详细错误，查看错误日志</h3><p>找到站点的error_log，里面会有详细的错误记录，现在的目录是</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/var/</span>log<span class="hljs-regexp">/httpd/</span><br></code></pre></td></tr></table></figure>
+<p>发现是没有安装php-mysqli，安装一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum install php-mysqli<br></code></pre></td></tr></table></figure>
+<h3 id="出现新错误！：PHP-Fatal-error-Call-to-undefined-method-mysqli-result-fetch-all"><a href="#出现新错误！：PHP-Fatal-error-Call-to-undefined-method-mysqli-result-fetch-all" class="headerlink" title="出现新错误！：PHP Fatal error:  Call to undefined method mysqli_result::fetch_all()"></a>出现新错误！：PHP Fatal error:  Call to undefined method mysqli_result::fetch_all()</h3><p>几经搜索，确认安装了php-mysqlnd，可能的原因是php版本不支持该函数（v5.4），于是决定更新php版本</p>
+<p><a target="_blank" rel="noopener" href="https://www.zerostopbits.com/how-to-upgrade-php-5-4-to-php-7-3-on-centos-7-5-1804/">HOW TO UPGRADE PHP 5.4 TO PHP 7.3 ON CENTOS 7.5 (1804)</a></p>
+<p>至此，终于可以正常访问到条形图了！</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2020-04-03_195420.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">#数据可视化</a>
+      
+        <a href="/tags/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8/">#Linux服务器</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>初次尝试MySQL+php+ajax+D3.js记录</div>
+      <div>https://jjydxfs.github.io/2020/04/03/初次尝试MySQL-php-ajax-D3-js记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JJYDXFS</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年4月3日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/17/%E8%A7%86%E8%A7%89%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8-%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" title="视觉设计入门-笔记整理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">视觉设计入门-笔记整理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/26/%E5%85%B3%E4%BA%8E%E8%BF%87%E6%B8%A1%E7%9F%A9%E9%98%B5%E5%92%8C%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2%E5%85%AC%E5%BC%8F%E7%9A%84%E6%80%9D%E8%80%83/" title="关于过渡矩阵和坐标变换公式的思考">
+                        <span class="hidden-mobile">关于过渡矩阵和坐标变换公式的思考</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api.joycez.xyz/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"请输入评论 ...","avatar":"retro","highlight":true,"avatarForce":false},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       © JJYDXFS | Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> &  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

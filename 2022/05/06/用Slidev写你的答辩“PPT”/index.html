@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JJYDXFS">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="其实本文的主要内容应该是：用Slidev写我的答辩“PPT”，但用“你”来代替“我”好像就会让标题感觉高大上一些，so......在前阵子的毕业答辩中，我用 Slidev 而非 PowerPoint 制作了本科毕设pre的幻灯片。一直以来都想写些什么吹捧一下这款工具，这是我迄今为止见过最棒的用 Markdown 制作幻灯片的解决方案，在简洁高效和可定制化之间达到了良好平衡。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Slidev写你的答辩“PPT”">
+<meta property="og:url" content="https://jjydxfs.github.io/2022/05/06/%E7%94%A8Slidev%E5%86%99%E4%BD%A0%E7%9A%84%E7%AD%94%E8%BE%A9%E2%80%9CPPT%E2%80%9D/index.html">
+<meta property="og:site_name" content="JJYDXFS">
+<meta property="og:description" content="其实本文的主要内容应该是：用Slidev写我的答辩“PPT”，但用“你”来代替“我”好像就会让标题感觉高大上一些，so......在前阵子的毕业答辩中，我用 Slidev 而非 PowerPoint 制作了本科毕设pre的幻灯片。一直以来都想写些什么吹捧一下这款工具，这是我迄今为止见过最棒的用 Markdown 制作幻灯片的解决方案，在简洁高效和可定制化之间达到了良好平衡。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-06T04:25:25.000Z">
+<meta property="article:modified_time" content="2024-07-01T12:52:15.993Z">
+<meta property="article:author" content="JJYDXFS">
+<meta property="article:tag" content="其他">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>用Slidev写你的答辩“PPT” - JJYDXFS</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jjydxfs.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":"G-5BGESDX9FC","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-5BGESDX9FC', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5BGESDX9FC');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JJYDXFS&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://jjydxfs.github.io/academic/">
+                <i class="iconfont icon-link-fill"></i>
+                学术
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="用Slidev写你的答辩“PPT”"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-06 12:25" pubdate>
+          2022年5月6日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">用Slidev写你的答辩“PPT”</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实本文的主要内容应该是：用<a target="_blank" rel="noopener" href="https://sli.dev/">Slidev</a>写我的答辩“PPT”，但用“你”来代替“我”好像就会让标题感觉高大上一些，so……</p>
+<p>在前阵子的毕业答辩中，我用 Slidev 而非 PowerPoint 制作了本科毕设pre的幻灯片。一直以来都想写些什么吹捧一下这款工具，这是我迄今为止见过最棒的用 Markdown 制作幻灯片的解决方案，在简洁高效和可定制化之间达到了良好平衡。</p>
+<p>说是前阵子，其实只有前面这段话和部分大纲是当时写的。本来计划很快写完这篇文章，但是后来因为一些事情耽搁就鸽到了2023年年末，其中原因无外乎懒加健忘。但为了文章们之间的时序连贯性，还是把它的日期留在2022吧。由于时间间隔实在太久，这篇文章的形态可能和我一开始的预设会有很大出入。在一开始，我计划把这篇文章写成教程，以我使用 Slidev 制作毕业答辩 PPT 的过程展示如何使用 Slidev 来优雅地制作一份起码在我看来还挺高端的幻灯片。但是现在的我已经越来越难以耐下心来写一份详细的教程式文章，这种反差感在我偶尔翻阅自己的早期博文时尤为强烈。可能因为随着年岁的增长，不论是在生活或是技术上都经历着比以往更甚的困难，加上我总有一股不想让自己舒服过日子的冲动在，克服各种难题早已成为家常便饭。很多时候，解决困难的畅快感在我还没有开始动手将它记下时就快速流逝了，这时再写点什么也显得索然无味。所以，这篇文章自言自语的成份可能更甚它在技术上的参考意义。btw，我现在早已不再使用 Slidev 了，可能因为我近来也很少做 PPT 了吧。</p>
+<p>在一切开始之前，先给出成品：<a href="https://jjydxfs.github.io/slidev_demo/1" target="_blank">本人的本科毕设答辩PPT</a>。这个成品与当时答辩时的版本略有一些出入，主要是当时做的校徽背景图不知道放哪里去了（一年多了，中间还换了次电脑，真的很难再找到！而且，我虽然用 git 对代码进行了版本控制，但是我 ignore 了 public/ 文件夹！！！当时苦心研究 <code>.gitignore</code> 的报应终于在快两年后命中了我的眉心😃）</p>
+<p>Slidev 基于 mkdown 格式的文稿生成网页版的幻灯片，鼠标移到画面的左下角还会显示一些标注工具，左右方向键可以控制幻灯片的播放，这些都是 Slidev 最基础的使用。话不多说，接下来我们开始进入正题。首先，从 mkdown 和 PowerPoint 的对比开始。</p>
+<h3 id="Markdown和PowerPoint"><a href="#Markdown和PowerPoint" class="headerlink" title="Markdown和PowerPoint"></a>Markdown和PowerPoint</h3><p>mkdown 对 PowerPoint 的区别就一如 mkdown 对 Word，好吧，看上去像句废话；那一如 Latex 对 Word？emmm，大差不差。从原理上而言，应当算是 <strong>排版与内容分离</strong> v.s. <strong>不分离</strong>。不难想到，咱们伟大的 Latex 当然也可以用来做幻灯片，好像很多搞数学的人就喜欢用 Latex 做幻灯片，毕竟公式友好。作为更有互联网味的排版语言，mkdown 当然有其特性，其中我最欣赏的一点就是它与网页的高度兼容，可以将许多新鲜的前端交互方式插入 PPT 难道不是很酷的事情么？而且这样一来，任何人都可以轻松地与内容进行交互，不必只能通过显式的文件分发。冗余的文件分发真是太无趣了，如果可以选，我更喜欢分享一个网址而不是文件。</p>
+<p>印象里第一次在现实中看到有人使用网页版的幻灯片，似乎是在大三下的媒体大数据课上，来教我们 <code>Vue.js</code> 的师兄用了网页驱动的幻灯片讲课。并且课后分享课件的时候，直接给我们分享了网页地址。那一天在我的心里种下种子：太酷了，我也要做网页版的幻灯片！</p>
+<h3 id="用Markdown写PPT的N种方法"><a href="#用Markdown写PPT的N种方法" class="headerlink" title="用Markdown写PPT的N种方法"></a>用Markdown写PPT的N种方法</h3><p>排版与内容分离的优势此处我不再多做赘述。当排版与内容分离之后，自然可以使用各式页面渲染技术来对内容进行装点。从我开始有意识了解利用 mkdown 写幻灯片后，也发现了不少有意思的工具。因为这篇文章主要聚焦 Slidev，所以其他工具会提得少一些。而且从我计划写这篇文章到真正动笔，中间还有一年多的时间差，也许世界又变了也说不定……</p>
+<h4 id="Jupyter-Notebook"><a href="#Jupyter-Notebook" class="headerlink" title="Jupyter Notebook"></a>Jupyter Notebook</h4><p>首先是老朋友 Jupyter，直接在 Jupyter 里用 mkdown 语法编写内容，之后在控制台生成 .html 就可以生成相应的幻灯片了。这可能是从写代码到汇报最快的方式hhh</p>
+<ul>
+<li>优点：简单、方便，支持上下左右滚动</li>
+<li>缺点：没有动画、屏幕显示内容少、样式比较丑</li>
+</ul>
+<p>丑是原罪，专业的活还是让专业人士干吧！</p>
+<h4 id="Slidev"><a href="#Slidev" class="headerlink" title="Slidev"></a>Slidev</h4><p>功能更多、动画多、更好看、更自由～等后面具体介绍到幻灯片里的内容，咱再慢慢夸！起码在我22年做毕设pre的时候，它是我见过最好用滴工具</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://marp.app/">Marp</a>：美观，但是没有动画，貌似会直接生成PDF</li>
+<li>Mark.show：Powered by Reveal.js，是一款在线应用；可怜的小东西，当我写到这时，点进原网址发现域名已经过期了，可能是不再维护了🙏</li>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/johnloy/27dd124ad40e210e91c70dd1c24ac8c8">List of markdown presentation tools</a>：有专门的 github 仓库收集了相关工具，感兴趣的话不妨试试</li>
+</ul>
+<h2 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h2><p>哈哈，进入正题 again。现在来详细说说我的幻灯片吧。虽然很多细节我估计已经想不起来了……详细的用法<a target="_blank" rel="noopener" href="https://sli.dev/guide/">官方文档</a>都会提，我定制自己的幻灯片时也主要是读文档，以及凭借一点微薄的前端知识折腾下样式代码。</p>
+<p>我记得我大约是22年3月左右开始了解 Slidev 的，反正3月的时候肯定已经用 Slidev 做过我的第一个幻灯片了。然后就在4月的毕业答辩上正式用了它。其实算是一个比较冲动的决定，因为估计10个答辩的人里11个用的应该都是 PowerPoint or WPS or PDF。在这种正式场合搞一些看上去“出格”的操作可能不是明智的决定，但我还是做了，因为我相信它的某些效果可以暴打 PowerPoint 之流！对，暴打！</p>
+<h3 id="做一个简洁的封面"><a href="#做一个简洁的封面" class="headerlink" title="做一个简洁的封面"></a>做一个简洁的封面</h3><p>首先就是魔改封面啦，为了更切合毕业答辩的主题，我当时把背景换成了校徽，中间字的白色背景有没有做磨砂效果我已经忘记了🥲而且字体排版啥还尽量往 PowerPoint 的风格上靠（想想有点可笑，为了融入大家，我得装得自己像个老实幻灯片）</p>
+<p>哦对！我想起来我应该从第二页开始还把校徽放在左上角，并用分割线分割了一下！可恶啊，我找不到我的图片素材了。它的音容笑貌只能留在我的脑袋里，最是人间留不住，代码数据忘入库！</p>
+<h3 id="嵌入表格"><a href="#嵌入表格" class="headerlink" title="嵌入表格"></a>嵌入表格</h3><p>简洁是我做pre一贯的风格，没有花哨的动画没有花哨的背景。所以屏幕前的朋友，不必吐槽幻灯片样式的单调，它本因如此。如果觉得单调，就把鼠标移到画面左下角，打开幻灯片的标注工具给它上上色好了（全屏上色更爽）</p>
+<p>接下来，我简单介绍一下第6页的表格：把鼠标移上去，选中行的交互功能是不是很眼熟！这是 Jupyter 的表格样式哦～因为 Slidev 自带的表格样式不太符合我的胃口，恰好我看 Jupyter 的表格就很顺眼，于是一个偷梁换柱，哦不对，是兼容并包，get 顺眼的表格交互样式。你让 PDF 或者 PowerPoint 来交互一个我看看😋</p>
+<h3 id="嵌入网页"><a href="#嵌入网页" class="headerlink" title="嵌入网页"></a>嵌入网页</h3><p>在第12页，我嵌入了一个 <code>echarts.js</code> 画的 graph，因为是直接用 <code>iframe</code> 嵌入的，所以也支持一样的交互方式。配上这个纯白背景，就显得很统一，拖拽节点的时候仿佛它们与页面本就是一体的。不过有一点小小的遗憾，就是现在的这个 graph 不是我答辩时的原图。原图找不到了😭</p>
+<h3 id="再嵌入一个网页"><a href="#再嵌入一个网页" class="headerlink" title="再嵌入一个网页"></a>再嵌入一个网页</h3><p>在第14页，我又嵌入了一个网页。这个网页更复杂一些，是一个交互式可视化的小工具。在 <code>Select Politician</code> 字段选择 <code>Donald Trump</code>，<code>Start month</code> 和 <code>End month</code> 分别选 <code>2019-07</code> 和 <code>2020-12</code>，再点击 Query。Boom！是不是出现了新东西。至于这个具体是什么东西嘛，可能需要读一下我幻灯片的前面内容哈哈哈</p>
+<p>好吧，不卖关子，毕竟这个可视化最初就是为了幻灯片而写的：我通过这个工具可视化一些政要在特定时间内的出行记录</p>
+<ul>
+<li>红点是他们所属国家的首都，蓝点则是出行地点</li>
+<li>鼠标移到蓝点上可以显示每次该地点的名字以及每次出行的时间</li>
+<li>最下面的时间轴可以播放，显示这个政要随时间访问地点的累积情况</li>
+<li>蓝点还可以双击，跳转到这个样本对应的新闻上下文。因为这个行迹是由深度学习模型基于新闻内容分类得到的（btw，我们的这项工作在23年被ICWSM接收了🥳）</li>
+</ul>
+<h2 id="Slidev-yyds"><a href="#Slidev-yyds" class="headerlink" title="Slidev, yyds!"></a>Slidev, yyds!</h2><p>如果看完了整个幻灯片，应该能感受到 Slidev 比 PowerPoint 之流的强大之处吧！基础的 PowerPoint 效果它都有，也可以导出 PDF；哦对了，Slidev 提供的演讲者模式也很好用。而且还能把它部署成网页，比如我现在用得就是 Github Page 服务，所有人都可以跟它交互，这不是很棒嘛！况且 mkdown 让排版与内容分离，编辑的时候只需要专注内容就可以了，特别适合统一模板的情况下定期制作幻灯片。大约有半年多的时间，我一直都使用 Slidev 来完成组会汇报XD</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E7%94%9F%E5%B0%B1%E6%98%AF%E6%8A%98%E8%85%BE/" class="category-chain-item">人生就是折腾</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%B6%E4%BB%96/">#其他</a>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>用Slidev写你的答辩“PPT”</div>
+      <div>https://jjydxfs.github.io/2022/05/06/用Slidev写你的答辩“PPT”/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JJYDXFS</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月6日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/24/%E8%80%81%E6%96%87%E7%89%A9%E4%BF%AE%E5%A4%8D%E8%AE%A1%E5%88%92%E3%80%8A%E9%9E%A0%E9%AA%91%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97%E3%80%8B/" title="老文物修复计划：《鞠骑入坑指南》">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">老文物修复计划：《鞠骑入坑指南》</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/25/%E6%84%8F%E5%A4%96%E9%A1%BA%E5%88%A9%E7%9A%84%E6%9C%8D%E5%8A%A1%E8%BF%81%E7%A7%BB%EF%BC%8C%E8%B0%88%E4%B8%80%E8%B0%88%E4%BA%91%E6%9C%8D%E5%8A%A1/" title="意外顺利的服务迁移，谈一谈云服务">
+                        <span class="hidden-mobile">意外顺利的服务迁移，谈一谈云服务</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api.joycez.xyz/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"请输入评论 ...","avatar":"retro","highlight":true,"avatarForce":false},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       © JJYDXFS | Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> &  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

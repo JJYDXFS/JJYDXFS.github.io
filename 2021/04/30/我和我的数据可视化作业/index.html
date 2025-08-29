@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JJYDXFS">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这学期有一门数据可视化的必修。去年旁听过一阵但是没有坚持听完，这次可要抓住机会好好学。抽空为作业写了一个集锦">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我和我的数据可视化作业">
+<meta property="og:url" content="https://jjydxfs.github.io/2021/04/30/%E6%88%91%E5%92%8C%E6%88%91%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="JJYDXFS">
+<meta property="og:description" content="这学期有一门数据可视化的必修。去年旁听过一阵但是没有坚持听完，这次可要抓住机会好好学。抽空为作业写了一个集锦">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-04-30_193126.png">
+<meta property="og:image" content="http://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-05-27_173303.png">
+<meta property="article:published_time" content="2021-04-30T10:00:30.000Z">
+<meta property="article:modified_time" content="2024-07-01T12:52:15.992Z">
+<meta property="article:author" content="JJYDXFS">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="D3js">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-04-30_193126.png">
+  
+  
+  
+  <title>我和我的数据可视化作业 - JJYDXFS</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jjydxfs.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":"G-5BGESDX9FC","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-5BGESDX9FC', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5BGESDX9FC');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JJYDXFS&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://jjydxfs.github.io/academic/">
+                <i class="iconfont icon-link-fill"></i>
+                学术
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="我和我的数据可视化作业"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-30 18:00" pubdate>
+          2021年4月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">我和我的数据可视化作业</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这学期有一门数据可视化的必修。去年旁听过一阵但是没有坚持听完，这次可要抓住机会好好学。抽空为作业写了一个集锦：<a target="_blank" rel="noopener" href="https://gallery.joycez.xyz/">数据可视化作业集</a></p>
+<h2 id="似乎没什么可说的饼图和柱状图联动"><a href="#似乎没什么可说的饼图和柱状图联动" class="headerlink" title="似乎没什么可说的饼图和柱状图联动"></a>似乎没什么可说的饼图和柱状图联动</h2><p><a target="_blank" rel="noopener" href="https://gallery.joycez.xyz/dviz2021/pie_chart.html"><strong>全球录制音乐产业收入 2001-2020 (US$ BILLIONS)</strong></a></p>
+<p>一鱼两吃，一种数据也可以用来做n次作业…… IFPI 的这个数据总计让我做了三遍</p>
+<p>从最早的堆叠柱状图，那个真是网上找了相关demo套来的，好多用法我至今也不太清楚，比如X轴和Y轴的刻度设置等……</p>
+<p>不过后两次的饼图、柱状图联动主体就基本是我自己敲出来的了。所以在增加点击事件的时候也会更加好操作一些。在写交互事件的时候我对 g 标签的使用有了更深入的认识，组 真是个好东西。最后一次做饼图到柱状图的数据连接，还是我做完音乐可视化之后得到的灵感</p>
+<p>这组数据最明显的特点大概就是实体唱片的没落和流媒体的崛起了吧</p>
+<h2 id="突发奇想的音乐可视化"><a href="#突发奇想的音乐可视化" class="headerlink" title="突发奇想的音乐可视化"></a>突发奇想的音乐可视化</h2><p><a target="_blank" rel="noopener" href="https://gallery.joycez.xyz/dviz2021/music_viz.html"><strong>Music Viz</strong></a></p>
+<p>说到起因，当然是因为最初定的主题是音乐相关。没事翻教材的时候看到后面有音乐可视化的章节，想着为什么不试做一下呢？</p>
+<p>要说IT行业的更新是真快，我用D3V6的版本每次都要大改教材上的代码。一会儿是语法变了，一会儿又是Chrome升级了新特性……就比如这个音乐可视化，就有Chrome上的变化<a target="_blank" rel="noopener" href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio">Autoplay Policy Changes  | Web  | Google Developers</a>。得得到用户手势才能开始后续步骤，也就是得手动 resume</p>
+<p>不过我主要想说的是页面里的柱状图<del>（cuz扇形图是从书上参考来的）</del>：</p>
+<ol>
+<li>首先从<strong>颜色</strong>上含义和饼图是一样的：从红色到紫色，对应<strong>低频音到高频音</strong>，就和可见光谱一样</li>
+<li>柱状图的<strong>高度</strong>代表了该频率音在歌曲播放到当前时刻的<strong>平均强度</strong></li>
+<li>某柱体的<strong>透明度</strong>代表了该频率音在歌曲中相对最常出现的音的<strong>使用频率</strong></li>
+</ol>
+<p>当歌曲播放完之后就能得到一个基于统计数据的直方图</p>
+<p>我在写之前，看了其他的一些音乐可视化，大都注重于表现音乐的瞬时性。诚然，音乐的多变能在每时每刻呈现出来是很好的，然而当音乐播放完之后，所有的声音、色彩都消失了。不免让人有落差</p>
+<p>所以，让音乐留下来吧，抓住一点影子也好。就像三维物体穿过二维平面，我想通过这些统计数据记录下音乐播放过的痕迹</p>
+<p>页面上放的几首歌都是个人歌单里比较喜欢的几首，算是夹带私货了XP</p>
+<h2 id="没人喜欢冰与火之歌嘛？"><a href="#没人喜欢冰与火之歌嘛？" class="headerlink" title="没人喜欢冰与火之歌嘛？"></a>没人喜欢冰与火之歌嘛？</h2><p><a target="_blank" rel="noopener" href="https://gallery.joycez.xyz/dviz2021/Force_Directed_Graph/"><strong>Social Network in GoT</strong></a></p>
+<p>作为一个孤独的冰火粉丝是什么体验。大约就是画完力导关系图想和别人分享却没有人能理解吧。可！是！这个图它真的很酷耶！</p>
+<blockquote>
+<p>不过，先小小吐槽一下<a target="_blank" rel="noopener" href="https://www.kaggle.com/mmmarchetti/game-of-thrones-dataset">源数据集</a>，不知道是按什么逻辑统计的关联</p>
+<p>没有 Martell 家族，确实，卷一里是没什么戏份。但是！连雷加这挂了十几年的人都有统计，把多恩惨打在公屏上！伊利亚公主直接查无此人了，虽然就算提到大概也是和 The Mountain 关联在一起……那还是大可不必。就当少找几个图帮我节省时间了</p>
+<p>不过我看到 Sansa 和梅葛一世还有关联的时候，我整个人都充满了问号？？？亲爱的你是去穿越了吗</p>
+<p>诸如此类的奇怪交集我就不多赘述了，总得来说数据集质量还是可以的</p>
+</blockquote>
+<p>一点进页面显示的就是龙家的关系图（<strong>点击不同族徽可以切换家族关系图</strong>），大大的三头龙图标非常赏心悦目</p>
+<p>可能和很多人不同，我最喜欢的是坦格利安家族。因为我是龙妈nc粉，我摊牌了！我就是夹带私货！</p>
+<p>我还专门为每个家族找了 sigil 和背景图片，这回记得压缩图片了</p>
+<p>每个家族成员<strong>共享相同节点颜色</strong>，在家族关系图中，该家族成员节点会<strong>被放大突出</strong>；在单人关系图中（<strong>双击节点切换单人关系</strong>），中心人物被放大突出。<strong>线的粗细程度代表交集的多寡</strong></p>
+<p>以全书我最喜欢的角色·永远的神·安达尔人·洛伊拿人和先民的女王·七国女王/统治者·全境守护者·大草海的卡丽熙·镣铐/锁链破除者·弥林女王·龙石岛公主·不焚者·龙之母·弥莎·母亲·银发女王·银发女士·龙女王·丹妮莉丝·坦格利安——即<strong>龙妈</strong>为例：</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-04-30_193126.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在龙妈的单人关系图中，三根最粗的线连接着卷一中对她影响最大的三个男人：马王Drogo、她二哥乞丐王Viserys以及大熊Jorah，无疑说明这个数据集还是有一定可靠性<del>（我在说什么废话）</del>。甚至连Mirri Maz Duur那个神婆都有，而且关系还不小。总之就是这个图对我这样看原著的书粉来说非常非常的有意思！</p>
+<p>好吧，也许对GOT不感兴趣的人，同样也不会对这个图感兴趣。所以！我的朋友圈为什么没有冰火书粉！为什么！</p>
+<h2 id="大明首辅观察录"><a href="#大明首辅观察录" class="headerlink" title="大明首辅观察录"></a>大明首辅观察录</h2><p>每个人少年时总不免有“中二”的时候。就我而言，大约是在读过《明朝那些事儿》后上头变成无脑明粉这样子……不过很快就下头了，把 <strong>时刻牢记理中客</strong> 打在公屏上！</p>
+<p>某天晚上，凑巧和舍友F大人聊起明代的掌故趣闻，相谈甚欢。隔天一想，反正这音乐主题研究了很久一直没什么进展<del>（是的，进展基本等于没有。写过一个后台接网易云爬虫、前台点击绘制听歌排行词云，写完想想觉得没有任何意义，甚至爬了几次后还被限制权限了淦）</del>，我和舍友也是兴致缺缺，不如就换题得了。至于题目嘛，还算现成，就拿首辅们开刀吧。位极人臣的帝国二把手、文官之路的巅峰，各种荣誉Title加持，还有科普意义在，我觉得靠谱！</p>
+<h3 id="一个副产品：永乐-嘉靖年间大明首辅任期词云图"><a href="#一个副产品：永乐-嘉靖年间大明首辅任期词云图" class="headerlink" title="一个副产品：永乐-嘉靖年间大明首辅任期词云图"></a>一个副产品：永乐-嘉靖年间大明首辅任期词云图</h3><p><a target="_blank" rel="noopener" href="https://gallery.joycez.xyz/dviz2021/ming_info.html">永乐-嘉靖年间大明首辅任期词云图</a></p>
+<p>需要画个词云，就从目前收集到的数据里随便拉出一些来画吧。截至交作业前一天，由于数据过于零散和庞杂，我的“同僚”F大人堪堪查到嘉靖朝的首辅们。所以就先将隆庆朝之前首辅们画个词云来~</p>
+<p>一点没什么必要的说明：</p>
+<ul>
+<li><strong>名字的大小</strong>代表在任总时长</li>
+<li>名字的颜色是随机的，哈哈，没错，没有任何意义！</li>
+<li><strong>鼠标移入</strong>到名字上，名字颜色加深，右侧提示栏出现对应人物简介</li>
+<li><strong>鼠标移出</strong>名字外，名字颜色恢复浅色，提示栏消失</li>
+<li><strong>鼠标点击</strong>名字，提示栏固定</li>
+</ul>
+<p><img src="http://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-05-27_173303.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>以图为例：杨士奇大人身为“三杨”之首，保持了有明一代首辅的最长任期：将近20年，轻松跑赢明代首辅不到3年的平均任期。四朝元老，妥妥的人生赢家，除了有个不争气的儿子……唉</p>
+<p>当然，以上都不是重点，阻止事件冒泡或者设置相对尺寸这种小坑就更不是了，但是确实有遇到，顺带提一嘴</p>
+<p><strong>重点来了</strong>：延续我一贯喜欢夹带私货的毛病，这次也成功和F大人一起为 寝室长 作传，并悄悄放入词云中（美其名曰，人数太少帮忙凑凑数）</p>
+<blockquote>
+<p>《（伪）明史 · 文*传》</p>
+<p>文*（1999年**月**日 - ），字**，又字**，号黑帘居士[1]。顺天府宛平（今北京西城区）人 。中蓝名人、内阁首辅。<br>文*幼承庭训，七岁时以神童入顺天府学。定福元年（2018年）二甲第二名[2]，赐进士出身，历庶吉士、翰林编修，并担任贰零伍舍监[3]</p>
+<p>定福二年（2019年），因治贰零伍聋瞎[4]泛滥有功，升兵部右侍郎兼翰林学士，入阁参预机务，累迁礼部尚书兼文渊阁大学士、中传太保[5]。定福四年（2021年）五月二十六日，天有异象，小行星D205冲月[6]，月有血色。二十七日风雨大作，上据钦天监时任监正宋经[7]所占擢升文*为内阁首辅，连加至少师兼太子太师、吏部尚书、华盖殿大学士</p>
+<p>文*崇儒兴学，注重实务。居官敢言，极陈怠政之失，曾当朝驳斥懒政同僚：“子姑待之”[8]。任内多次提拔有为后辈，翰林编修麻瓜、麻将[9]具为其门生</p>
+<p>文*辞藻艳丽，以青词擅名，流传有《青狐集》[10]、《陶然亭文集》、《贰零伍轶事考》等。门生仰其有古贤人之风，赠私谥“浏健”[11]，取“清泉浏浏石凿凿，健如黄犊走复来”之意。后人将文*与澎湃[12]、王曦晨[13]合称“Driver三阁老”[14]</p>
+</blockquote>
+<p><strong>必知必会文学常识：</strong></p>
+<p>[1] 黑帘居士：文阁老有一套乌漆嘛黑的床帘，常年拉着的黑色床帘必须拥有姓名</p>
+<p>[2] 二甲第二名：身为准·内阁首辅，考试名次得高吧，二甲！安排（2是文阁老的学号</p>
+<p>[3] 贰零伍舍监：寝室长</p>
+<p>[4] 聋瞎：指其余经常“以下犯上”的舍友，因又聋又瞎（耳朵眼睛都不好使）自嘲为小聋瞎</p>
+<p>[5] 中传太保：太酷了这名，想到这名的时候差点把我大腿拍断</p>
+<p>[6] 冲月：灵感来源《甄嬛传》危月燕冲月</p>
+<p>[7] 宋经：感谢舍友sw友情客串</p>
+<p>[8] 子姑待之：出自《左传·郑伯克段于鄢》。不老实是吧？等着瞧，寝室长总会给你点颜色看看！</p>
+<p>[9] 麻瓜、麻将：指F大人和我</p>
+<p>[10] 《青狐集》：好家伙，这应该是不能写的吧（<del>改编自《青媚狐》，寝室长喜欢的歌</del></p>
+<p>[11] 浏健：这才是整场意外的罪魁祸首。我和F大人正整理首辅们的谥号，发现弘治朝首辅刘健的谥号正是寝室长名字的谐音，于是一发不可收拾，非得作点妖才行……（要重点说明一下，这里的谥号仅仅是开玩笑！是开玩笑！非常感谢寝室长大人大量不计较！）</p>
+<p>[12] 澎湃：感谢舍友p友情客串</p>
+<p>[13] 王曦晨：感谢舍友cx友情客串</p>
+<p>[14] Driver三阁老：致敬成化年间的“纸糊三阁老”，以及，这三位也太爱在寝室开车了！</p>
+<h3 id="主要产品"><a href="#主要产品" class="headerlink" title="主要产品"></a>主要产品</h3><p>部署链接：<a target="_blank" rel="noopener" href="https://ming.joycez.xyz/">大明首辅观察录</a></p>
+<p>将在之后的博文中详细说明制作的心路历程</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BE%E5%86%85%E4%BD%9C%E4%B8%9A/" class="category-chain-item">课内作业</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">#数据可视化</a>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+        <a href="/tags/D3js/">#D3js</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>我和我的数据可视化作业</div>
+      <div>https://jjydxfs.github.io/2021/04/30/我和我的数据可视化作业/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JJYDXFS</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年4月30日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/31/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%B8%80%E6%B3%A2n%E6%8A%98%E7%9A%84debug%E4%B9%8B%E6%97%85/" title="记一次一波n折的debug之旅">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">记一次一波n折的debug之旅</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/30/%E6%88%91%E7%9A%84%E5%A4%A7%E5%88%9B%E5%9B%9E%E9%A1%BE/" title="我的大创回顾">
+                        <span class="hidden-mobile">我的大创回顾</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api.joycez.xyz/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"请输入评论 ...","avatar":"retro","highlight":true,"avatarForce":false},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       © JJYDXFS | Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> &  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

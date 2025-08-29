@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JJYDXFS">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="终于把“大明首辅观察录”写完啦！一直计划着做完后得写篇文章好好回顾一下。对于这个数据可视化课程结课作业，我将主要的精力花在了数据的处理和展现形式的选择以及图表的细节优化上。其他部分有所欠缺确实也是力有不逮，无法面面俱到。可以说，数据收集的过程大大满足了我的“考据癖”。也不知道这个毛病是什么时候养成的。还记得读上彊村民的《宋词三百首》那会儿，我就爱一个一个注释抠过去......">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大明首辅观察录">
+<meta property="og:url" content="https://jjydxfs.github.io/2021/06/24/%E5%A4%A7%E6%98%8E%E9%A6%96%E8%BE%85%E8%A7%82%E5%AF%9F%E5%BD%95/index.html">
+<meta property="og:site_name" content="JJYDXFS">
+<meta property="og:description" content="终于把“大明首辅观察录”写完啦！一直计划着做完后得写篇文章好好回顾一下。对于这个数据可视化课程结课作业，我将主要的精力花在了数据的处理和展现形式的选择以及图表的细节优化上。其他部分有所欠缺确实也是力有不逮，无法面面俱到。可以说，数据收集的过程大大满足了我的“考据癖”。也不知道这个毛病是什么时候养成的。还记得读上彊村民的《宋词三百首》那会儿，我就爱一个一个注释抠过去......">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_104813_1.jpg">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_120301.jpg">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_122042.jpg">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_131247.jpg">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_132709.jpg">
+<meta property="og:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_135708.jpg">
+<meta property="article:published_time" content="2021-06-24T12:30:14.000Z">
+<meta property="article:modified_time" content="2024-07-01T12:52:15.992Z">
+<meta property="article:author" content="JJYDXFS">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_104813_1.jpg">
+  
+  
+  
+  <title>大明首辅观察录 - JJYDXFS</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jjydxfs.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":"G-5BGESDX9FC","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-5BGESDX9FC', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5BGESDX9FC');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JJYDXFS&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="https://jjydxfs.github.io/academic/">
+                <i class="iconfont icon-link-fill"></i>
+                学术
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="大明首辅观察录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-06-24 20:30" pubdate>
+          2021年6月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">大明首辅观察录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>终于把 <a target="_blank" rel="noopener" href="http://ming.joycez.xyz/">大明首辅观察录</a> 写完啦！一直计划着做完后得写篇文章好好回顾一下。对于这个数据可视化课程结课作业，我将主要的精力花在了 <strong>数据的处理</strong> 和 <strong>展现形式的选择</strong> 以及 <strong>图表的细节优化</strong> 上。其他部分有所欠缺确实也是力有不逮，无法面面俱到</p>
+<p>可以说，数据收集的过程大大满足了我的“考据癖”。也不知道这个毛病是什么时候养成的。还记得读上彊村民的《宋词三百首》那会儿，我就爱一个一个注释抠过去…… </p>
+<p>本篇博文将会从技术实现和设计思路两个角度逐步剖析我制作 <a target="_blank" rel="noopener" href="http://ming.joycez.xyz/">大明首辅观察录</a> 的全过程</p>
+<h2 id="灵感总在深夜出现"><a href="#灵感总在深夜出现" class="headerlink" title="灵感总在深夜出现"></a>灵感总在深夜出现</h2><p>灵感的来源在之前的博文中已经简单提到了。其实那晚原本已经躺上床，准备读会儿《美的历程》陶冶一下情操（简称催眠）。恰巧舍友W回寝谈到兰陵笑笑生原作者云云，勾起了我读《明朝那些事儿》的回忆。加入聊天后发现和舍友F兴趣相投，于是乎多聊了几句，当然，谈话涉及到了某几位著名的首辅。之后我便看不进书了，一直在想换结课作业主题的事儿，阅读进度也就此停留在了“陶器几何纹饰……”😅</p>
+<h2 id="结构设计"><a href="#结构设计" class="headerlink" title="结构设计"></a>结构设计</h2><p>确定主题后就得设计表现形式。我想改变惯用的从上而下线性表达，看了一些作品后觉得 <em>story-teller</em> 式的滚动说明风格挺符合我的预期。于是找了一篇参考教程 <a target="_blank" rel="noopener" href="https://vallandingham.me/scroller.html">So You Want to Build A Scroller</a>，准备着手试试</p>
+<p>在阅读了源码之后，我大致预估了一下绘图代码，觉得似乎并不能原样照搬：该教程作者的绘图参考了 <a target="_blank" rel="noopener" href="https://d3js.org/">D3js</a> 作者 <a target="_blank" rel="noopener" href="https://bost.ocks.org/mike/">Mike Bostock</a> 提出的 <a target="_blank" rel="noopener" href="https://bost.ocks.org/mike/chart/">Towards Reusable Charts</a>，将所有的图表预先绘制在同一张 SVG 上。这意味着随着图片增多，为了代码的可维护性必须进行解耦；而且，绘制在同一张 SVG 上图片交互将会产生冲突……</p>
+<p>在综合考虑了各主要矛盾之后，我决定舍弃绘制在同 SVG 中可以带来的滚动动态表现，首先保证代码的可维护性和图表的交互功能。经过一晚上的调整，将原先基于 js 的滚动激活效果整个迁移到 Vue3 上（利用了 Vue 提供的动态组件）。这也是代码设计的主要逻辑：通过监听页面滚动事件切换对应的组件</p>
+<p>之后就是一个一个组件往下写了，可维护性至此也得到了保证</p>
+<h2 id="试画散点图"><a href="#试画散点图" class="headerlink" title="试画散点图"></a>试画散点图</h2><p>在确定“首辅”资格的时候，我主要参考了<a target="_blank" rel="noopener" href="https://baike.baidu.com/reference/1080773/6711rzSlvDTwa92ek81yVUJZsicKrw3IZPQ2JgH_3_jbyT4A9gfaYurn9RmjrqHP1_ONFgsY8ZunIzsvZ_Xv8WcVxNfsstCq7WG3aDUA">《明史·宰辅年表》</a>。首辅其实是一个相对模糊的概念，不像别的职务那样有明确的定义。这份年表算是提供了一个相对权威的参考吧。对于年表中记载模糊的地方，还特意去查了《明实录》，尤其是《明世宗实录》</p>
+<p>考虑到需要表现出“个体”，我认为散点图会是个不错的选择。通过颜色、坐标轴，我将尽可能多的信息编码进散点图中。横纵两轴其实都有时间的概念，不过这张图最直观的信息应该是首辅疏密程度与时间点间的关系</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_104813_1.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这里给出我个人发现的几个有意思的时间点。从上图可以看出多个密集区域：天顺元年、嘉靖朝前半时期、天启崇祯一路到明朝灭亡……</p>
+<ol>
+<li><strong>天顺元年</strong>：朱祁镇发动夺门之变成功复辟，几个有从龙之功的投机分子开始“分猪肉”，人来人往好不热闹（背景图选择青花质感也是想牵强附会一下景泰蓝以纪念景泰帝，我私人还是挺同情他的……</li>
+<li><strong>嘉靖朝前半段</strong>：可以看出嘉靖还是很爱玩平衡朝政这一手的。例如图上嘉靖刚即位时，“大礼议”事件一连换了多位首辅。但嘉靖二十一年之后就太平了许多，也不知道是不是和壬寅宫变有关（从此性情大变，安心修仙😇</li>
+<li><strong>天启崇祯</strong>：这密集程度看得我密集恐惧症都要犯了，果然就是快完蛋瞎搞呗</li>
+</ol>
+<p>这里加些题外话：虽然每张图表都看上去挺朴实无华的，但大都前后改了好几版才呈现出现在的样子，也就是我前言中所提及的 <strong>图表的细节优化</strong>。例如这张散点图的坐标轴设计、网格密度调整以及提示框边缘点特判等等</p>
+<p>对于创作，我始终相信这是一个发现的过程，你所创作的作品最终会引导你到它该有的状态。当然前提是你投入了足够多的时间使它变得重要，重要到可以引导你，“正因为你为你的玫瑰花费了时间，才使你的玫瑰变得如此重要”（已经开始胡言乱语了，别管我👋</p>
+<h2 id="考据起步-——-地图"><a href="#考据起步-——-地图" class="headerlink" title="考据起步 —— 地图"></a>考据起步 —— 地图</h2><p>统计一下首辅的籍贯当然也是非常重要的，毕竟这也属于主要个人信息嘛。为了画出按朝代绘制的地图，大约是花了个把小时考量和给源数据分层。此外还有把地名对应到古地名的工作，期间参考了《明史》列传和古地图集，被迫学习到了很多地理知识：南通州与北通州分别在京杭大运河的两端，因连接南北直隶而得名……</p>
+<p>使用定时器来给地图动态上色，因为实在是不想再按年代细分首辅名字了！好累！所以就定时器一波到底再交互（这也导致切换组件时定时器会错乱的bug，没想好怎么解决=。=）</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_120301.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>江西吉安府，repeat it again！庐陵文化真的强👍</p>
+<h2 id="考据进阶-——-桑基图"><a href="#考据进阶-——-桑基图" class="headerlink" title="考据进阶 —— 桑基图"></a>考据进阶 —— 桑基图</h2><p>以前读《明朝那些事儿》有关科举制度一段时，下意识就留下了“同进士不如进士”的印象（为如夫人洗足，赐同进士出身😏），进而想当然认为三甲出身当首辅是极小概率事件。但是……细细查了数据之后（这里强烈致谢 <a target="_blank" rel="noopener" href="http://www.360doc.com/userhome.aspx?userid=20226523&amp;cid=115">《明朝、清朝各科殿试金榜（进士）名录》</a> 的制作者，数据详实，帮助巨大！），三甲首辅其实还是有不少。不过从人数上看三甲人数还是少于一甲的，顶尖人才还是顶尖啊（战术后仰）</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_122042.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>当初想着要表现各名次占比关系，考虑到平面饼图直方图过于简单且不直观，而且一旦数据方差较大时会很难看，没有必要为单一离群点做对数处理……好在让我看到了桑基图。看到它的一瞬间，比例√ 直观√ 多关联√，是我的梦中情图了！</p>
+<p>桑基图在 D3v4 版时还只是插件，到 v6 已经被正式加入官方 API 。由于我对使用 chart 的掌握不是很好，出于工期考虑还是稳妥一些选择了 v4 版本的插件实现。比较坑的一点是屏幕宽度不适宜时桑基图是无法显示的（这个bug卡了我好久才发现）</p>
+<p>之后还企图想让最后一列年号按时间顺序排列，细看插件的布局算法后立马就放弃了这个念头……人家这么写肯定是有道理的，哪能你说定序就定序（原算法大致表现为先按流入值的一定顺序放置，放不下的往顶上放，才能让最后的布局大体上呈现均衡不错乱）</p>
+<p>得益于桑基图的直观性，结论几乎是呼之欲出：</p>
+<ol>
+<li>不考科举基本是不可能当首辅的，你以为你是杨士奇？</li>
+<li>我们二甲才是首辅中间力量！</li>
+<li>崇祯朝对三甲出身宽容度最高，不怕死就来吧！</li>
+</ol>
+<h2 id="怎么处理谥号呢？Circle-Packing！"><a href="#怎么处理谥号呢？Circle-Packing！" class="headerlink" title="怎么处理谥号呢？Circle Packing！"></a>怎么处理谥号呢？Circle Packing！</h2><p>从上任到卸任，逻辑很自然会过渡到人物评价上。做人物评价却是不太容易，尤其是这些早已作古的老家伙们。无法从列传中收集足够多权威的评价语制作词云，只能寄希望于谥号，谥号总是不会变且易于考据吧</p>
+<p>原本打算做泡泡图，把所有谥号按人数画圈，当然交互是会差一些。正巧课上学到层次图，翻看官网demo的时候一眼相中 Circle Packing，固定的小圈适合长度相近的文本，这简直是为谥号们量身定制的表现形式！感谢官网demo的极高套用性🙏，我几乎只是整理好数据就做完了图</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_131247.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>层次图起初想以谥号优劣区分，但是看了相关资料后发现基本都是上谥，分！不！出！区！别！那就简单点，还是按人头数数咯</p>
+<p>PS：唯独夏言的“愍”字是个中谥，当然这也与他蒙冤被斩，死后昭雪等遭遇有关</p>
+<h2 id="从平面到立体"><a href="#从平面到立体" class="headerlink" title="从平面到立体"></a>从平面到立体</h2><p>连谥号都讲过了，再想从群体角度发挥是没辙儿了。想着抓几个有共性的典型吧，就从那些没有谥号的“问题首辅”出发。先 pass 没啥代表性的 ，例如大贪官严嵩、被人诬陷谋逆的陈循、因为老板挂了自己也不可能好过的一群明末首辅……哈，这有几只东林党！来来来，东林党争马上安排（反正东林党在我这也没什么面子🙂</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_132709.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>东林党和阉党在天启前后那是你方唱罢我登场。原计划是做力导向图，舍友F提议可以做棋盘图，我一听深以为然，觉得这主意妙极了！力导向美则美矣，在表现关系上却有局限。倒不如拿中国象棋盘做背景，顺道还能把关系与传统文化背景联系在一块儿，不错</p>
+<p>先画了 2D 版并做了人物简介的交互，学了 threejs 后打算翻制成 3D 版。但由于 threejs 的选择器通常通过射线选中对应物体，在画面可转动且物体较多的情况下，准度不好控制。多次尝试效果不佳，受工期限制，干脆同时保留 2D 和 3D 两版，一版专攻视觉效果，一版留作交互说明</p>
+<p>多提一嘴《东林党点将录》，是真的蛮有趣的hhh</p>
+<h2 id="雷达图"><a href="#雷达图" class="headerlink" title="雷达图"></a>雷达图</h2><p> 终于来到了最后一张图，我以人物介绍作为总结。在带有提示的输入框中输入首辅姓名，可以查询对应首辅的详细生平。雷达图将以较为直观的方式表现这位首辅的可量化参数与平均值的差异（雷达图使用的是 D3 插件）</p>
+<p><img src="https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-25_135708.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在实现这部分的时候，还是遇到了一些问题，我很少会在总结性文字中提到“问题”这样的字眼，如果提到，说明这真的很是一个问题（绕吗？绕就对了XD）</p>
+<p>大致表现为我需要在两个子组件之间进行数据传输，最后通过A子组件调用父组件调用B子组件的方法实现了在输入框组件搜索→雷达图组件展示结果的功能</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看到这已经可以划走了，我自己想再讲两句</p>
+<p>做着做着我也不知道这该算个什么作业了，因为我花了大量，哦不，巨量的时间在信息收集与整理考据上、在设计表现形式上……还有，在感叹我发现的小故事上</p>
+<p>小时候我最喜欢的就是中国古代史了，那些发生在过去的人和事总能让我兴致盎然。也许也幻想过长大成为一个历史学家或者考古学家什么的，但高考既没选历史，大学也读了完全与之无关的专业……随意感慨几句，可能我真学了历史学会发现全然不是这样，现在的距离就很好</p>
+<p>知道这些故事有什么用呢，或许就是无用之用</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BE%E5%86%85%E4%BD%9C%E4%B8%9A/" class="category-chain-item">课内作业</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">#数据可视化</a>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>大明首辅观察录</div>
+      <div>https://jjydxfs.github.io/2021/06/24/大明首辅观察录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>JJYDXFS</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年6月24日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/24/%E5%B0%8F%E5%AD%A6%E6%9C%9F%E5%9B%9E%E9%A1%BE%E2%80%94%E2%80%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%BC%E5%90%88%E5%AE%9E%E8%B7%B5/" title="小学期回顾——大数据综合实践">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">小学期回顾——大数据综合实践</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/31/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%B8%80%E6%B3%A2n%E6%8A%98%E7%9A%84debug%E4%B9%8B%E6%97%85/" title="记一次一波n折的debug之旅">
+                        <span class="hidden-mobile">记一次一波n折的debug之旅</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-api.joycez.xyz/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"请输入评论 ...","avatar":"retro","highlight":true,"avatarForce":false},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       © JJYDXFS | Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> &  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
